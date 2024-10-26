@@ -2,7 +2,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { TCreateAdmin } from "@/types";
 
 const useExampleService = () => {
 	const axiosAuth = useAxiosAuth();
