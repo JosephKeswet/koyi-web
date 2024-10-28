@@ -1,3 +1,3 @@
 export const queryKeys = {
-    courses: "courses",
-}
+  courses: "courses",
+};

@@ -1,5 +1,5 @@
 export const apiRoutes = {
-    auth: {
-      signUp: "/auth/sign-up",
-    },
-}
+  auth: {
+    signUp: "/auth/sign-up",
+  },
+};

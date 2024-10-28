@@ -8,9 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-	return (
-		<QueryClientProvider client={queryClient}>
-			<NextThemesProvider {...props}>{children}</NextThemesProvider>
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <NextThemesProvider {...props}>{children}</NextThemesProvider>
+    </QueryClientProvider>
+  );
 }
