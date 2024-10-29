@@ -7,13 +7,13 @@ import React from "react";
 type Props = {
   text: string;
   route: string;
-  field:string
+  field: string;
 };
 
-export default function FieldNavItem({ text, route,field }: Props) {
+export default function FieldNavItem({ text, route, field }: Props) {
   const pathname = usePathname();
   const params = useParams();
-  const slug = params?.slug ? params.slug[0] : '';
+  const slug = params?.slug ? params.slug[0] : "";
   return (
     <Link
       href={route}

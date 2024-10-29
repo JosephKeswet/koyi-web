@@ -27,7 +27,7 @@ export default function DashboardHeader({
   children,
 }: React.PropsWithChildren<{}>) {
   return (
-    <div className="sticky top-0  w-full z-50 bg-white  p-3 lg:px-[50px] lg:py-[20px] border-b">
+    <div className="sticky top-0  w-full z-50 bg-white  p-3 lg:px-[50px] lg:py-[20px] border-b ">
       <div className="w-full flex justify-between pb-0">{children}</div>
     </div>
   );
@@ -63,7 +63,7 @@ function HeaderContainer({ children }: React.PropsWithChildren<{}>) {
     throw new Error("Header container must be used within a Dashboard header");
   }
   return (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
+    <div className="hidden md:flex flex-col lg:flex-row items-start lg:items-center gap-4">
       {children}
     </div>
   );
@@ -81,7 +81,11 @@ function HeaderText() {
         {context.title}
       </p>
       <div className="flex lg:hidden">
-        <HamburgerMenuIcon className="w-[32px] h-[30px]" />
+        {/* <HamburgerMenuIcon className="w-[32px] h-[30px]" /> */}
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </div>
     </div>
   );

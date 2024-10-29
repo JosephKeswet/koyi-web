@@ -45,7 +45,7 @@ export default function Page({}: Props) {
           <HomeNavItem
             icon={<LearnIcon />}
             text="Learn"
-            route={routes.home_learn}
+            route={`${routes.home_learn}/fields/mobile`}
           />
           <HomeNavItem
             icon={<GetHiredIcon />}
@@ -77,7 +77,7 @@ export default function Page({}: Props) {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4 pt-4">
             <CourseCard />
             <CourseCard />
             <CourseCard />
@@ -105,7 +105,7 @@ export default function Page({}: Props) {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4 pt-4">
             <CourseCard />
             <CourseCard />
             <CourseCard />
