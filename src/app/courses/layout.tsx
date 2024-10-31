@@ -45,7 +45,7 @@ export default function Layout({ children }: Props) {
           </DashboardHeader.HeaderContainer>
         </DashboardHeader.MainHeader>
       </DashboardHeader>
-
+  
       <div className="px-3 lg:px-[50px] pt-2 md:pt-4">
         <Tabs field={field} tabs={tabs}  defaultTab={tabs[0].routeKey} />
       </div>

@@ -8,6 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   children: React.ReactNode;

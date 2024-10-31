@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
 import Tabs from "@/components/global/Tabs";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   children: React.ReactNode;
@@ -45,7 +46,16 @@ export default function Layout({ children }: Props) {
         </DashboardHeader.MainHeader>
       </DashboardHeader>
 
-
+    {/* Sticky Chevron and Navigation */}
+    <div className="px-3 lg:px-[50px] flex items-center justify-between gap-4 md:gap-[32px] py-3 lg:py-[20px]">
+        <Link
+          href={routes.home}
+          className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
+        >
+          <ChevronLeft />
+        </Link>
+        <Button>My professional profile</Button>
+      </div>
 
       {/* Scrollable Content */}
       <div className="flex-1 overflow-hidden w-full p-3 lg:p-[50px]">
