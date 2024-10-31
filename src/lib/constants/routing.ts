@@ -14,7 +14,7 @@ export const routes = {
   explore_fields: "/home/learn/fields",
   browse_skills: "/home/learn/fields/skills",
   skill_details: "/home/learn/skills", // Dynamic route [skillId]
-  learn_course:'/home/learn/course',
+  learn_course: "/home/learn/course",
   jobs: "/home/jobs",
   job_categories: "/home/jobs/categories", // Dynamic route [categoryId]
   professional_profile: "/home/jobs/professional-profile",

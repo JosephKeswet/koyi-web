@@ -6,7 +6,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
   // Construct the route conditionally based on the presence of both slug parts
   const baseRoute = slug.length > 1 ? `/${slug[0]}/${slug[1]}` : `/${slug[0]}`;
-  
+
   // Construct the title using both slug parts
   const title = `${slug[0]}${slug[1] || ""}`;
 
@@ -24,9 +24,9 @@ export default function Page({ params }: { params: { slug: string[] } }) {
     <div className="h-[50vh] overflow-y-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {courseCards.map((course) => (
-          <LearnCourseCard 
-            key={course.id} 
-            title={course.title} 
+          <LearnCourseCard
+            key={course.id}
+            title={course.title}
             route={`${baseRoute}/${course.id}`} // Appending the id to the route
           />
         ))}

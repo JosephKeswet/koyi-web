@@ -1,38 +1,37 @@
 import { routes } from "@/lib/constants";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface SkillsTabProps {
   field: string;
-  tabs: string[]; // Array of tab names fetched from the backend
+  tabs: { routeKey: string; value: string }[]; // Array of tab names fetched from the backend
   defaultTab?: string; // Optional default tab
 }
 
-export default function SkillsTab({ field, tabs, defaultTab }: SkillsTabProps) {
-  const params = useParams();
+export default function Tabs({ field, tabs, defaultTab }: SkillsTabProps) {
+  const pathname = usePathname();
 
-  // Ensure `slug` exists and has at least two parts before accessing `slug[1]`
-  const slugParts = params?.slug?.[1] ? params.slug[1].split("/") : [];
+  // Calculate `activeTab` directly from `pathname`
   const activeTab =
-    tabs.find((tab) => slugParts.includes(tab.toLowerCase())) ||
+    tabs.find((tab) => pathname.includes(tab.routeKey.toLowerCase()))?.routeKey ||
     defaultTab ||
-    tabs[0];
+    tabs[0].routeKey;
 
   return (
     <div className="flex items-center w-full border-b pt-3 px-[20px]">
       {tabs.map((tab) => {
-        const isActive = activeTab.toLowerCase() === tab.toLowerCase();
+        const isActive = activeTab === tab.routeKey.toLowerCase();
 
         return (
           <Link
-            href={`${routes.browse_skills}/${field}/${tab.toLowerCase()}`}
-            key={tab}
+            href={`${routes.courses}/${tab.routeKey.toLowerCase()}`}
+            key={tab.routeKey}
             className={`flex items-center justify-center px-4 py-2 cursor-pointer ${
               isActive ? "border-b-2 border-primary" : ""
             }`}
           >
             <p className={`${isActive ? "text-primary" : "text-gray-500"}`}>
-              {tab}
+              {tab.value}
             </p>
           </Link>
         );

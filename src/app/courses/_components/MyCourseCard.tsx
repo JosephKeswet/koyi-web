@@ -8,11 +8,11 @@ type Props = {
   route?: string;
 };
 
-export default function LearnCourseCard({ title, route }: Props) {
+export default function MyCourseCard({ title, route }: Props) {
   return (
     <Link
       href={`${routes.learn_course}/${route}/`}
-      className="w-auto h-[161px] bg-white border"
+      className="w-auto h-[326px] bg-white border"
     >
       <p>{title}</p>
     </Link>

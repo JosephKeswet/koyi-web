@@ -48,17 +48,16 @@ export default function Layout({ children }: Props) {
 
       {/* Sticky Chevron and Navigation */}
       <div className="px-3 lg:px-[50px] flex flex-col gap-4 md:gap-[32px] pt-3 lg:pt-[50px]">
-       <div className="flex items-center gap-2">
-         <Link
-          href={routes.home}
-          className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
-        >
-          <ChevronLeft />
-        </Link>
-        <div className="flex md:hidden">
-
-        <SearchComponent/>
-        </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href={routes.home}
+            className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
+          >
+            <ChevronLeft />
+          </Link>
+          <div className="flex md:hidden">
+            <SearchComponent />
+          </div>
         </div>
         <div className="w-full border p-1 flex items-center gap-2 rounded-[6px] overflow-x-auto">
           <FieldNavItem

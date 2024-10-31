@@ -47,7 +47,7 @@ const NavItem: React.FC<NavItemProps> = ({ href, active, children }) => {
     <Link href={href} passHref>
       <p
         className={`flex flex-col items-center justify-center gap-1 text-sm font-medium transition-colors ${
-          active ? "text-primary" : "text-[#95989E] " 
+          active ? "text-primary" : "text-[#95989E] "
         }  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300`}
         // prefetch={false}
       >
