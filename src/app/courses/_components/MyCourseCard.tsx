@@ -11,7 +11,7 @@ type Props = {
 export default function MyCourseCard({ title, route }: Props) {
   return (
     <Link
-      href={`${routes.learn_course}/${route}/`}
+      href={`${routes.courses}/course/${route}/`}
       className="w-auto h-[326px] bg-white border"
     >
       <p>{title}</p>

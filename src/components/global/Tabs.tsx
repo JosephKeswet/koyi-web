@@ -13,7 +13,8 @@ export default function Tabs({ field, tabs, defaultTab }: SkillsTabProps) {
 
   // Calculate `activeTab` directly from `pathname`
   const activeTab =
-    tabs.find((tab) => pathname.includes(tab.routeKey.toLowerCase()))?.routeKey ||
+    tabs.find((tab) => pathname.includes(tab.routeKey.toLowerCase()))
+      ?.routeKey ||
     defaultTab ||
     tabs[0].routeKey;
 

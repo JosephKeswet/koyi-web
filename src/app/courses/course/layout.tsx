@@ -8,8 +8,8 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
+import SkillsTab from "../../home/learn/_components/SkillTabs";
 import Tabs from "@/components/global/Tabs";
-import { Button } from "@/components/ui/button";
 
 type Props = {
   children: React.ReactNode;
@@ -32,7 +32,7 @@ export default function Layout({ children }: Props) {
         <DashboardHeader.MainHeader
           searchFunc={() => {}}
           downloadXLX={() => {}}
-          title="Get hired"
+          title="My courses"
           createFunction={() => {}}
         >
           <DashboardHeader.HeaderText />
@@ -51,14 +51,13 @@ export default function Layout({ children }: Props) {
       </DashboardHeader>
 
       {/* Sticky Chevron and Navigation */}
-      <div className="px-3 lg:px-[50px] flex items-center justify-between gap-4 md:gap-[32px] py-3 lg:py-[20px]">
+      <div className="px-3 lg:px-[50px] flex flex-col gap-4 md:gap-[32px] py-3 lg:py-[20px]">
         <Link
           href={routes.home}
           className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
         >
           <ChevronLeft />
         </Link>
-        <Button>My professional profile</Button>
       </div>
 
       {/* Scrollable Content */}

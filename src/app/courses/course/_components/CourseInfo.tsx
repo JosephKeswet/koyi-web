@@ -1,7 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { AccordionItem } from "@radix-ui/react-accordion";
 
 type Props = {};
 
@@ -14,6 +21,26 @@ export default function CourseInfo({}: Props) {
       </div>
     );
   }
+
+  const lessons = [
+    { id: 1, title: "Introduction to Angular" },
+    { id: 2, title: "Components and Templates" },
+    { id: 3, title: "Dependency Injection" },
+    { id: 4, title: "Routing and Navigation" },
+    { id: 5, title: "Forms in Angular" },
+    { id: 6, title: "Angular CLI and Workflows" },
+  ];
+
+  const [selectedLessons, setSelectedLessons] = useState<number[]>([]);
+
+  // Toggle function to handle selecting and deselecting lessons
+  const handleSelectLesson = (lessonId: number) => {
+    setSelectedLessons((prevSelected) =>
+      prevSelected.includes(lessonId)
+        ? prevSelected.filter((id) => id !== lessonId)
+        : [...prevSelected, lessonId],
+    );
+  };
   return (
     <div>
       <section className="p-4 flex flex-col gap-4">
@@ -21,19 +48,8 @@ export default function CourseInfo({}: Props) {
           <p className="text-lg font-bold text-primary-black">
             Angular - The Complete Guide (2024 Edition)
           </p>
-          <div className="flex items-center gap-1">
-            <StarFilledIcon className="text-[#F5B81A]" />
-            <p className="text-xs text-[#95989E] font-medium">4.8 rating</p>
-          </div>
         </div>
-        <p className="text-sm font-normal">
-          Welcome to our comprehensive Angular tutorial designed specifically
-          for beginners who are eager to dive into the world of modern web
-          development. Whether you&lsquo;re new to programming or transitioning
-          from another technology, this tutorial is crafted to provide you with
-          a solid foundation in Angular, a powerful and popular front-end
-          framework.
-        </p>
+
         <div className="space-y-3">
           <Metrics
             icon={
@@ -107,26 +123,106 @@ export default function CourseInfo({}: Props) {
             title="6,000 enrolled"
           />
         </div>
-        <Button className="w-full md:w-[150px]">Start course</Button>
         <hr />
-        <div className="bg-primary-grey h-auto p-4 space-y-2 rounded-[4px]">
-          <h1>What you&apos;ll learn</h1>
-          <div className="flex items-start gap-2 ">
-            <Check className="text-[#95989E]" />
-            <p>
-              Learn modern Angular, including standalone components & signals
-              from the ground up & in great detail!
-            </p>
-          </div>
-          <div className="flex items-start gap-2 ">
-            <Check className="text-[#95989E]" />
-            <p>
-              Learn how to send HTTP requests, implement routing, authenticate
-              users or handle complex forms - and much more!
-            </p>
-          </div>
-          <p className="text-xs font-bold pt-1">Show More</p>
-        </div>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="h-[48px]">
+              {" "}
+              <span className="font-bold text-lg text-primary-black">
+                Lessons
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="flex flex-col gap-2">
+              {lessons.map((lesson) => (
+                <div
+                  key={lesson.id}
+                  className={`flex items-center gap-2 h-[40px] px-4 ${
+                    selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
+                  }`}
+                >
+                  <Checkbox
+                    id={`lesson-${lesson.id}`}
+                    checked={selectedLessons.includes(lesson.id)}
+                    onCheckedChange={() => handleSelectLesson(lesson.id)}
+                    className="rounded-full"
+                  />
+                  <label
+                    htmlFor={`lesson-${lesson.id}`}
+                    className="text-sm text-gray-700"
+                  >
+                    {lesson.title}
+                  </label>
+                </div>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              {" "}
+              <span className="font-bold text-lg text-primary-black">
+                Grades
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="flex flex-col gap-2">
+              {lessons.map((lesson) => (
+                <div
+                  key={lesson.id}
+                  className={`flex items-center gap-2 h-[40px] px-4 ${
+                    selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
+                  }`}
+                >
+                  <Checkbox
+                    id={`lesson-${lesson.id}`}
+                    checked={selectedLessons.includes(lesson.id)}
+                    onCheckedChange={() => handleSelectLesson(lesson.id)}
+                    className="rounded-full"
+                  />
+                  <label
+                    htmlFor={`lesson-${lesson.id}`}
+                    className="text-sm text-gray-700"
+                  >
+                    {lesson.title}
+                  </label>
+                </div>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              {" "}
+              <span className="font-bold text-lg text-primary-black">
+                Notes
+              </span>
+            </AccordionTrigger>
+            <AccordionContent className="flex flex-col gap-2">
+              {lessons.map((lesson) => (
+                <div
+                  key={lesson.id}
+                  className={`flex items-center gap-2 h-[40px] px-4 ${
+                    selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
+                  }`}
+                >
+                  <Checkbox
+                    id={`lesson-${lesson.id}`}
+                    checked={selectedLessons.includes(lesson.id)}
+                    onCheckedChange={() => handleSelectLesson(lesson.id)}
+                    className="rounded-full"
+                  />
+                  <label
+                    htmlFor={`lesson-${lesson.id}`}
+                    className="text-sm text-gray-700"
+                  >
+                    {lesson.title}
+                  </label>
+                </div>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </section>
     </div>
   );

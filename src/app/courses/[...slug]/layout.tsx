@@ -8,7 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
-import SkillsTab from "../home/learn/_components/SkillTabs";
+import SkillsTab from "../../home/learn/_components/SkillTabs";
 import Tabs from "@/components/global/Tabs";
 
 type Props = {
@@ -20,7 +20,11 @@ export default function Layout({ children }: Props) {
   const params = useParams();
   const pathname = usePathname();
   const field = params?.slug ? params.slug[0] : "";
-  const tabs = [{routeKey:"all",value:"All courses"}, {routeKey:'ongoing',value:"Ongoing courses"}, {routeKey:"completed",value:"Completed courses"}];
+  const tabs = [
+    { routeKey: "all", value: "All courses" },
+    { routeKey: "ongoing", value: "Ongoing courses" },
+    { routeKey: "completed", value: "Completed courses" },
+  ];
 
   return (
     <div className="h-screen flex flex-col">
@@ -45,9 +49,9 @@ export default function Layout({ children }: Props) {
           </DashboardHeader.HeaderContainer>
         </DashboardHeader.MainHeader>
       </DashboardHeader>
-  
+
       <div className="px-3 lg:px-[50px] pt-2 md:pt-4">
-        <Tabs field={field} tabs={tabs}  defaultTab={tabs[0].routeKey} />
+        <Tabs field={field} tabs={tabs} defaultTab={tabs[0].routeKey} />
       </div>
 
       {/* Scrollable Content */}
