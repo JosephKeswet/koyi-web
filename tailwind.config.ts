@@ -30,6 +30,7 @@ const config = {
           black: "#000307",
           grey: "#F3F5F9",
           light: "#DEEBFF",
+          darkGrey:"#95989E"
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
