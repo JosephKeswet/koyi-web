@@ -3,9 +3,13 @@ import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
 import React from "react";
 
-type Props = {};
+type Props = {
+  icon: any,
+  text: string,
+  route: string
+};
 
-export default function CourseInfo({}: Props) {
+export default function CourseInfo({icon, text, route}: Props) {
   function Metrics({ icon, title }: { icon: any; title: string }) {
     return (
       <div className="flex items-center gap-1">

@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import LearnCourseCard from "../../_components/LearnCourseCard";
 import { StarFilledIcon } from "@radix-ui/react-icons";

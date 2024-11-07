@@ -1,6 +1,6 @@
 "use client";
 import DashboardHeader from "@/components/global/DashboardHeader";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "@/lib/ProfileContext";
 import { useRouter } from "next/navigation";
 import { icons } from "@/lib/constants/icons";
@@ -14,6 +14,15 @@ type Props = {};
 export default function Page({}: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const featuredCoursesRef = useRef<HTMLDivElement>(null);
+  const topCertificateRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right", ref: React.RefObject<HTMLDivElement>) => {
+    if(ref.current) {
+      const scrollAmount = 300;
+      ref.current.scrollBy({ left: direction === "left" ? -scrollAmount: scrollAmount, behavior: "smooth" });
+    }
+  };
   const openRegistrationModal = () => {
     setIsModalOpen(true);
   };
@@ -68,16 +77,25 @@ export default function Page({}: Props) {
                 See all
               </p>
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full">
+                <div 
+                  onClick={() => scroll("left", featuredCoursesRef)} 
+                  className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full cursor-pointer"
+                >
                   <ChevronLeft />
                 </div>
-                <div className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full">
+                <div 
+                  onClick={() => scroll("right", featuredCoursesRef)}
+                  className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full cursor-pointer"
+                >
                   <ChevronRight />
                 </div>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4 pt-4">
+          <div 
+            ref={featuredCoursesRef}
+            className="flex gap-4 pt-4 overflow-x-auto scrollbar-hide"
+          >
             <CourseCard />
             <CourseCard />
             <CourseCard />
@@ -96,16 +114,24 @@ export default function Page({}: Props) {
                 See all
               </p>
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full">
+                <div 
+                  onClick={() => scroll("left", topCertificateRef)}
+                  className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full cursor-pointer"
+                >
                   <ChevronLeft />
                 </div>
-                <div className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full">
+                <div 
+                  onClick={() => scroll("right", topCertificateRef)}
+                  className="flex items-center justify-center w-8 h-8 bg-primary-grey rounded-full cursor-pointer">
                   <ChevronRight />
                 </div>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-4 pt-4">
+          <div 
+            ref={topCertificateRef}
+            className="flex gap-4 pt-4 overflow-x-auto scrollbar-hide"
+          >
             <CourseCard />
             <CourseCard />
             <CourseCard />
