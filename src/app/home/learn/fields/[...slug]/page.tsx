@@ -24,14 +24,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
   // Example array of course cards with IDs
   const courseCards: Course[] = [
-    { id: 1, title: `${titleBase} Course 1`, route: `${baseRoute}/1`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
-    { id: 2, title: `${titleBase} Course 2`, route: `${baseRoute}/2`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
-    { id: 3, title: `${titleBase} Course 3`, route: `${baseRoute}/3`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
-    { id: 4, title: `${titleBase} Course 4`, route: `${baseRoute}/4`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
-    { id: 5, title: `${titleBase} Course 5`, route: `${baseRoute}/5`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
-    { id: 6, title: `${titleBase} Course 6`, route: `${baseRoute}/6`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
-    { id: 7, title: `${titleBase} Course 7`, route: `${baseRoute}/7`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
-    { id: 8, title: `${titleBase} Course 8`, route: `${baseRoute}/8`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
+    { id: 1, title: `${titleBase} Course 1`, route: `1`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
+    { id: 2, title: `${titleBase} Course 2`, route: `2`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
+    { id: 3, title: `${titleBase} Course 3`, route: `3`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
+    { id: 4, title: `${titleBase} Course 4`, route: `4`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
+    { id: 5, title: `${titleBase} Course 5`, route: `5`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
+    { id: 6, title: `${titleBase} Course 6`, route: `6`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
+    { id: 7, title: `${titleBase} Course 7`, route: `7`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/frontend.jpg" },
+    { id: 8, title: `${titleBase} Course 8`, route: `8`, duration: "6-10 hours", enrolled: "6K", imageUrl: "/images/angular.jpg" },
   ];
 
   const itemsPerPage = 4;
@@ -50,7 +50,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           <LearnCourseCard
             key={course.id}
             title={course.title}
-            route={course.route}
+            routeParam={course.route}
             duration={course.duration}
             enrolled={course.enrolled}
             imageUrl={course.imageUrl}

@@ -96,12 +96,12 @@ export default function Page({}: Props) {
             ref={featuredCoursesRef}
             className="flex gap-4 pt-4 overflow-x-auto scrollbar-hide"
           >
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
+            <CourseCard routeParam='1'/>
+            <CourseCard routeParam='2'/>
+            <CourseCard routeParam='3'/>
+            <CourseCard routeParam='4'/>
+            <CourseCard routeParam='5'/>
+            <CourseCard routeParam='6'/>
           </div>
         </section>
         <section>

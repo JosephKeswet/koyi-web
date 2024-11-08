@@ -4,9 +4,9 @@ import { Check } from "lucide-react";
 import React from "react";
 
 type Props = {
-  icon: any,
-  text: string,
-  route: string
+  icon?: any,
+  text?: string,
+  route?: string
 };
 
 export default function CourseInfo({icon, text, route}: Props) {

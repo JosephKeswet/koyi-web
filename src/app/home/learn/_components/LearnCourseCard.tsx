@@ -1,19 +1,20 @@
 import { Button } from "@/components/ui/button";
+import { routes } from "@/lib/constants";
 import Link from "next/link";
 import React from "react";
 
 type Props = {
-  title: string;
-  route: string;
-  duration: string;
-  enrolled: string;
-  imageUrl: string;
+  title?: string;
+  routeParam?: string;
+  duration?: string;
+  enrolled?: string;
+  imageUrl?: string;
 };
 
-export default function LearnCourseCard({ title, route, duration, enrolled, imageUrl }: Props) {
+export default function LearnCourseCard({ title, routeParam, duration, enrolled, imageUrl }: Props) {
   return (
     <Link
-      href={route}
+      href={`${routes.learn_course}/${routeParam}`}
       className="bg-white border rounded-lg shadow-sm p-4 flex gap-8"
     >
       <div className="relative h-40 min-w-[200px] bg-gray-100 rounded-lg overflow-hidden">
