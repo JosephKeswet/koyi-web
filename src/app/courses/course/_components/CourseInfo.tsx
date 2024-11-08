@@ -43,7 +43,7 @@ export default function CourseInfo({}: Props) {
   };
   return (
     <div>
-      <section className="p-4 flex flex-col gap-4">
+      <section className="p-2 flex flex-col gap-4">
         <div className="space-y-2">
           <p className="text-lg font-bold text-primary-black">
             Angular - The Complete Guide (2024 Edition)
