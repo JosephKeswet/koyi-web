@@ -34,12 +34,6 @@ export default function GradesCert() {
     <div className="h-screen flex flex-col">
       {/* Header */}
       <div className="flex px-4 py-4 items-center">
-        <Link
-          href={routes.home}
-          className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
-        >
-          <ChevronLeft />
-        </Link>
         <h1 className="text-2xl font-semibold ml-4">Grades</h1>
       </div>
 
