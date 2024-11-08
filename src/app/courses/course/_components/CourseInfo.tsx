@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/button";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
@@ -9,6 +10,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AccordionItem } from "@radix-ui/react-accordion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -21,6 +24,8 @@ export default function CourseInfo({}: Props) {
       </div>
     );
   }
+
+  const router = useRouter();
 
   const lessons = [
     { id: 1, title: "Introduction to Angular" },
@@ -157,39 +162,11 @@ export default function CourseInfo({}: Props) {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>
-              {" "}
-              <span className="font-bold text-lg text-primary-black">
-                Grades
-              </span>
-            </AccordionTrigger>
-            <AccordionContent className="flex flex-col gap-2">
-              {lessons.map((lesson) => (
-                <div
-                  key={lesson.id}
-                  className={`flex items-center gap-2 h-[40px] px-4 ${
-                    selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
-                  }`}
-                >
-                  <Checkbox
-                    id={`lesson-${lesson.id}`}
-                    checked={selectedLessons.includes(lesson.id)}
-                    onCheckedChange={() => handleSelectLesson(lesson.id)}
-                    className="rounded-full"
-                  />
-                  <label
-                    htmlFor={`lesson-${lesson.id}`}
-                    className="text-sm text-gray-700"
-                  >
-                    {lesson.title}
-                  </label>
-                </div>
-              ))}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <div>
+          <Link className="text-lg font-bold text-primary-black block py-2" href={`${router.asPath}/grades`}>
+              Grades
+          </Link>
+        </div>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>
