@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/accordion";
 import { AccordionItem } from "@radix-ui/react-accordion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-type Props = {};
+type CourseInfoProps = {
+  handleMenuSelection: () => void;
+};
 
-export default function CourseInfo({}: Props) {
+export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
   function Metrics({ icon, title }: { icon: any; title: string }) {
     return (
       <div className="flex items-center gap-1">
@@ -26,6 +28,8 @@ export default function CourseInfo({}: Props) {
   }
 
   const router = useRouter();
+  const params = useParams();
+  const courseSlug = params.slug;
 
   const lessons = [
     { id: 1, title: "Introduction to Angular" },
@@ -55,13 +59,13 @@ export default function CourseInfo({}: Props) {
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="md:space-y-3 flex flex-row md:flex-col gap-2 md:gap-0 items-center md:items-start">
           <Metrics
             icon={
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -82,7 +86,7 @@ export default function CourseInfo({}: Props) {
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -103,7 +107,7 @@ export default function CourseInfo({}: Props) {
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -128,7 +132,7 @@ export default function CourseInfo({}: Props) {
             title="6,000 enrolled"
           />
         </div>
-        <hr />
+        <hr className="hidden md:block" />
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger className="h-[48px]">
@@ -154,6 +158,7 @@ export default function CourseInfo({}: Props) {
                   <label
                     htmlFor={`lesson-${lesson.id}`}
                     className="text-sm text-gray-700"
+                    onClick={handleMenuSelection}
                   >
                     {lesson.title}
                   </label>
@@ -163,7 +168,7 @@ export default function CourseInfo({}: Props) {
           </AccordionItem>
         </Accordion>
         <div>
-          <Link className="text-lg font-bold text-primary-black block py-2" href={`${router.asPath}/grades`}>
+          <Link className="text-lg font-bold text-primary-black block py-2" href={`/courses.course/${courseSlug}}/grades`} onClick={handleMenuSelection}>
               Grades
           </Link>
         </div>
