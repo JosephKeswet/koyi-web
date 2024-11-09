@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import LearnCourseCard from "../../_components/LearnCourseCard";
 import { StarFilledIcon } from "@radix-ui/react-icons";
@@ -34,7 +36,7 @@ export default function page({ params }: Props) {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2  gap-4 pt-2">
-          <LearnCourseCard />
+          <LearnCourseCard  />
           <LearnCourseCard />
           <LearnCourseCard />
           <LearnCourseCard />

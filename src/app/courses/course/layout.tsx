@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { routes } from "@/lib/constants";
 import DashboardHeader from "@/components/global/DashboardHeader";
@@ -10,6 +9,10 @@ import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
 import SkillsTab from "../../home/learn/_components/SkillTabs";
 import Tabs from "@/components/global/Tabs";
+import CourseInfo from "./_components/CourseInfo";
+import Grades from "./_components/Grades";
+import GradesCert from "./_components/GradesCert";
+import CourseRating from "./_components/CourseRating";
 
 type Props = {
   children: React.ReactNode;
@@ -20,6 +23,9 @@ export default function Layout({ children }: Props) {
   const params = useParams();
   const pathname = usePathname();
   const field = params?.slug ? params.slug[0] : "";
+
+  const isGradesPage = pathname.includes("grades");
+
   const tabs = [
     { routeKey: "all", value: "All courses" },
     { routeKey: "ongoing", value: "Ongoing courses" },
@@ -51,19 +57,26 @@ export default function Layout({ children }: Props) {
       </DashboardHeader>
 
       {/* Sticky Chevron and Navigation */}
-      <div className="px-3 lg:px-[50px] flex flex-col gap-4 md:gap-[32px] py-3 lg:py-[20px]">
+      <div className="flex flex-1 overflow-hidden">
+      <div className="w-[280px] h-full px-3 ">
+      <div className="flex flex-col gap-4 md:gap-[32px] lg:px-[50px] py-3 lg:py-[20px]">
         <Link
           href={routes.home}
           className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
         >
           <ChevronLeft />
         </Link>
-      </div>
 
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-hidden w-full p-3 lg:p-[50px]">
-        <div className="overflow-y-auto h-full">{children}</div>
+      <section className="">
+        <CourseInfo />
+      </section>
       </div>
+      </div>
+      
+      <main className="flex-1 overflow-y-auto border">
+        { isGradesPage ? <Grades /> :children}
+      </main>
+    </div>
     </div>
   );
 }
