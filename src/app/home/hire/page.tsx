@@ -22,9 +22,9 @@ export default function page({}: Props) {
       <p className="text-xl font-bold">What are you looking for?</p>
       <div className="grid grid-cols-2  md:grid-cols-3 gap-4">
   <HireCategoryCard category="mobile"/>
-  <HireCategoryCard category="mobile"/>
-  <HireCategoryCard category="mobile"/>
-  <HireCategoryCard category="mobile"/>
+  <HireCategoryCard category="backend"/>
+  <HireCategoryCard category="frontend"/>
+  <HireCategoryCard category="ui-ux"/>
 
 
       </div>

@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 
 type CourseInfoProps = {
-  handleMenuSelection: () => void;
+  handleMenuSelection?: (menuItem: string) => void;
 };
 
 export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
@@ -50,9 +50,22 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
         : [...prevSelected, lessonId],
     );
   };
+
+  const handleLessonClick = (lessonId: number) => {
+    router.push(`/courses/course/${courseSlug}/lessons/${lessonId}`);
+  };
+
+
+  const handleGradesClick = () => {
+    if (handleMenuSelection) {
+      handleMenuSelection('grades');
+    }
+    router.push(`/courses/course/${courseSlug}/grades`);
+  };
+
   return (
-    <div>
-      <section className="p-2 flex flex-col gap-4">
+    <div className="h-full overflow-auto md:overflow-hidden">
+      <section className="p-2 flex flex-col gap-4 min-h-screen md:h-screen">
         <div className="space-y-2">
           <p className="text-lg font-bold text-primary-black">
             Angular - The Complete Guide (2024 Edition)
@@ -148,6 +161,7 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
                   className={`flex items-center gap-2 h-[40px] px-4 ${
                     selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
                   }`}
+                  onClick={() => handleLessonClick(lesson.id)}
                 >
                   <Checkbox
                     id={`lesson-${lesson.id}`}
@@ -158,7 +172,6 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
                   <label
                     htmlFor={`lesson-${lesson.id}`}
                     className="text-sm text-gray-700"
-                    onClick={handleMenuSelection}
                   >
                     {lesson.title}
                   </label>
@@ -168,9 +181,9 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
           </AccordionItem>
         </Accordion>
         <div>
-          <Link className="text-lg font-bold text-primary-black block py-2" href={`/courses.course/${courseSlug}}/grades`} onClick={handleMenuSelection}>
-              Grades
-          </Link>
+          <button onClick={handleGradesClick} className="text-lg font-bold text-primary-black block py-2">
+            Grades
+          </button>
         </div>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">

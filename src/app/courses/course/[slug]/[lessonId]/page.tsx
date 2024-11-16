@@ -17,7 +17,7 @@ type LessonDetailProps = {
 
 export default function LessonDetailPage({
   breadcrumbs = [
-    { label: 'Getting Started', href: '/courses/getting-started' },
+    { label: 'Getting Started', href: '/courses/course/all/getting-started' },
     { label: 'Welcome to the Course', href: '#' },
   ],
   videoUrl = "https://www.youtube.com/embed/6IwqkzlON10?si=-ImgqykdwfLTDiAR", // Default video URL

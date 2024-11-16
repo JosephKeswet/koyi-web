@@ -81,12 +81,12 @@ export default function Page() {
               <AccordionTrigger className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 focus:outline-none">
                 <div className="flex items-center">
                   <div>
-                    <Checkbox
+                    {/* <Checkbox
                       id={`lesson-${index}`}
                       checked={selectedLessons.includes(index)}
                       onCheckedChange={() => handleSelectLesson(index)}
                       className="rounded-full"
-                    />
+                    /> */}
                   </div>
                   <div className="ml-4 flex flex-col">
                     <Link href={`/courses/course/${courseSlug}/${lesson.id}`}>
