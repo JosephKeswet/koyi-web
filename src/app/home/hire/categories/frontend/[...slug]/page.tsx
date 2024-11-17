@@ -17,7 +17,7 @@ export default function page({}: Props) {
     { routeKey: "frontend", name: "Frontend" },
     { routeKey: "ui-ux", name: "UI/UX" },
   ];
-  const basePath = routes.hire_categories; // Adjust the base path as needed
+  const basePath = routes.hire_categories; 
   return <div className="flex flex-col gap-8">
         <div className=" flex items-center justify-between gap-4 md:gap-[32px] ">
         <Link

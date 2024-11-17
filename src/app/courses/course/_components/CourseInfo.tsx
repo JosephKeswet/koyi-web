@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/accordion";
 import { AccordionItem } from "@radix-ui/react-accordion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-type Props = {};
+type CourseInfoProps = {
+  handleMenuSelection?: (menuItem: string) => void;
+};
 
-export default function CourseInfo({}: Props) {
+export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
   function Metrics({ icon, title }: { icon: any; title: string }) {
     return (
       <div className="flex items-center gap-1">
@@ -26,6 +28,8 @@ export default function CourseInfo({}: Props) {
   }
 
   const router = useRouter();
+  const params = useParams();
+  const courseSlug = params.slug;
 
   const lessons = [
     { id: 1, title: "Introduction to Angular" },
@@ -46,22 +50,35 @@ export default function CourseInfo({}: Props) {
         : [...prevSelected, lessonId],
     );
   };
+
+  const handleLessonClick = (lessonId: number) => {
+    router.push(`/courses/course/${courseSlug}/lessons/${lessonId}`);
+  };
+
+
+  const handleGradesClick = () => {
+    if (handleMenuSelection) {
+      handleMenuSelection('grades');
+    }
+    router.push(`/courses/course/${courseSlug}/grades`);
+  };
+
   return (
-    <div>
-      <section className="p-2 flex flex-col gap-4">
+    <div className="h-full overflow-auto md:overflow-hidden">
+      <section className="p-2 flex flex-col gap-4 min-h-screen md:h-screen">
         <div className="space-y-2">
           <p className="text-lg font-bold text-primary-black">
             Angular - The Complete Guide (2024 Edition)
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="md:space-y-3 flex flex-row md:flex-col gap-2 md:gap-0 items-center md:items-start">
           <Metrics
             icon={
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -82,7 +99,7 @@ export default function CourseInfo({}: Props) {
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -103,7 +120,7 @@ export default function CourseInfo({}: Props) {
               <svg
                 width="16"
                 height="16"
-                viewBox="0 0 16 16"
+                // viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -128,7 +145,7 @@ export default function CourseInfo({}: Props) {
             title="6,000 enrolled"
           />
         </div>
-        <hr />
+        <hr className="hidden md:block" />
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger className="h-[48px]">
@@ -144,6 +161,7 @@ export default function CourseInfo({}: Props) {
                   className={`flex items-center gap-2 h-[40px] px-4 ${
                     selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
                   }`}
+                  onClick={() => handleLessonClick(lesson.id)}
                 >
                   <Checkbox
                     id={`lesson-${lesson.id}`}
@@ -163,9 +181,9 @@ export default function CourseInfo({}: Props) {
           </AccordionItem>
         </Accordion>
         <div>
-          <Link className="text-lg font-bold text-primary-black block py-2" href={`${router.asPath}/grades`}>
-              Grades
-          </Link>
+          <button onClick={handleGradesClick} className="text-lg font-bold text-primary-black block py-2">
+            Grades
+          </button>
         </div>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">

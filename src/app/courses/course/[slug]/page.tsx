@@ -14,7 +14,10 @@ import { useParams } from "next/navigation";
 
 export default function Page() {
   const params = useParams();
+  const searchParams = useParams();
+
   const courseSlug = params.slug;
+  console.log(courseSlug)
   
   const objectives = [
     "Learn modern Angular, including standalone components & signals from the ground up & in great detail.",
@@ -78,15 +81,15 @@ export default function Page() {
               <AccordionTrigger className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 focus:outline-none">
                 <div className="flex items-center">
                   <div>
-                    <Checkbox
+                    {/* <Checkbox
                       id={`lesson-${index}`}
                       checked={selectedLessons.includes(index)}
                       onCheckedChange={() => handleSelectLesson(index)}
                       className="rounded-full"
-                    />
+                    /> */}
                   </div>
                   <div className="ml-4 flex flex-col">
-                    <Link href={`/courses/${courseSlug}/${lesson.id}`}>
+                    <Link href={`/courses/course/${courseSlug}/${lesson.id}`}>
                       <h4
                         className={`font-medium ${
                           index === 0 ? "text-blue-600" : "text-gray-800"

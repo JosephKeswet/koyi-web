@@ -27,7 +27,7 @@ export const routes = {
   post_job: "/home/hire/post-job",
 
   // My courses routes
-  courses: "/courses",
+  courses: "/courses/course/",
   course_categories: "/courses/categories/", // Dynamic route [categoryId]
   course_detail: "/courses/", // Dynamic route [courseId]
 

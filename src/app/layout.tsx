@@ -28,12 +28,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex items-start h-screen">
+          <div className="flex items-start h-full md:h-screen">
             <Sidebar />
-            <div className="w-full flex-1 overflow-auto h-screen">
+            <div className="w-full flex-1 overflow-y-scroll min-h-screen md:h-screen pb-20 md:pb-0">
               {children}
             </div>
-            <div className="flex md:hidden">
+            <div className="md:hidden fixed bottom-o left-0 right-0 z-50">
               <BottomNavigation />
             </div>
           </div>

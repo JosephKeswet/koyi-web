@@ -7,19 +7,29 @@ import { Clock, Users } from "lucide-react";
 import React from "react";
 
 type Props = {
-  title: string; route:string;  duration: string;  enrolled: string;  imageUrl: string;  category: string;
+  title: string; 
+  route: string; 
+  tab: string; 
+  duration: string;  
+  enrolled: string;  
+  imageUrl: string;  
+  category: string;
 };
 
-export default function MyCourseCard({title, route,
+export default function MyCourseCard({
+  title, 
+  route, 
+  tab,
   duration,
   enrolled,
   imageUrl,
-  category,}: Props) {
+  category,
+}: Props) {
   return (
     <Link
-      href={`${routes.courses}/course/${route}/`}
-      className="bg-white rounded-lg shadow-lg overflow-hidden">
-
+      href={`/courses/${route}/${tab}`} // Unified route pattern for both mobile and desktop
+      className="bg-white rounded-lg shadow-lg overflow-hidden"
+    >
       <div className="relative h-40 w-full bg-gray-100">
         <img
           src={imageUrl}
