@@ -22,6 +22,5 @@ export default function page({}: Props) {
     <div>
       <RoundedTabs basePath={basePath} tabs={tabs}/>
     </div>
-
   </div>;
 }

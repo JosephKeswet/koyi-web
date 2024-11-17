@@ -6,6 +6,51 @@ import AvailableJobCard from "../_components/AvailableJobCard";
 
 type Props = {};
 
+const jobListingsData = [
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+  {
+    title: "Food Ordering Website",
+    categories: ["Mobile Dev", "Flutter"],
+    description: "I'm looking for a full-time senior product designer with 6-8 years of experience in product design.",
+    budget: "₦100,000",
+  },
+];
+
 export default function page({}: Props) {
 
   const tabs = [
@@ -24,12 +69,15 @@ export default function page({}: Props) {
       <RoundedTabs basePath={basePath} tabs={tabs}/>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <AvailableJobCard/>
-      <AvailableJobCard/>
-      <AvailableJobCard/>
-      <AvailableJobCard/>
-
+    {jobListingsData.map((job, index) => (
+          <AvailableJobCard 
+            key={index} 
+            title={job.title} 
+            description={job.description} 
+            budget={job.budget} 
+            categories={job.categories}
+          />
+        ))}
     </div>
-
   </div>;
 }
