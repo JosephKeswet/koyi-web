@@ -60,7 +60,7 @@ export default function Sidebar() {
                 </SidebarComponent.Dropdown>
                 <SidebarComponent.Dropdown
                   hasItems={false}
-                  route={`${routes.courses}/all`}
+                  route={`${routes.courses}`}
                 >
                   <SidebarComponent.DropdownTrigger
                     icon={

@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/nawa/cour/layout.tx", "src/app/nawa/cour/[slug/lesso/pagetsx"],
   "exclude": ["node_modules"]
 }
