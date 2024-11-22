@@ -1,131 +1,86 @@
 "use client";
-import React, { useState } from "react";
-import { Check } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionTrigger,
-  AccordionItem,
-} from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
+import React from "react";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { useParams } from "next/navigation";
-import LessonSummary from "../../../_components/LessonSummary";
 
-export default function Page() {
+export default function LessonDetailPage() {
   const params = useParams();
-  const searchParams = useParams();
-
   const courseSlug = params.slug;
-  
-  const objectives = [
-    "Learn modern Angular, including standalone components & signals from the ground up & in great detail.",
-    "Learn how to send HTTP requests, implement routing, authenticate users or handle complex forms - and much more!",
-    "Develop modern, complex, responsive and scalable web applications with Angular.",
-    "Fully understand the architecture behind an Angular application and how to use it.",
-    "Learn TypeScript, a modern JavaScript superset, along the way.",
-    "Use the gained, deep understanding of Angular fundamentals to quickly establish yourself as a frontend developer.",
+
+  const breadcrumbs = [
+    { label: "Getting Started", href: `/courses/course/${courseSlug}/lesson` },
+    { label: "Welcome to the Course", href: "#" },
   ];
 
-  const lessons = [
+  const videoUrl =
+    "https://www.youtube.com/embed/6IwqkzlON10?si=-ImgqykdwfLTDiAR";
+
+  const transcript = [
     {
-      id: "1",
-      title: "Welcome to the Course!",
-      type: "Video",
-      duration: "1:31",
-      videoUrl: "https://www.youtube.com/embed/wFaEDxqXwHY?si=QMTG--LLXilp-2zL",
+      time: "0:00",
+      text: "Hello there. Learn how to send HTTP requests, implement routing, authenticate users or handle complex forms - and much more!",
     },
     {
-      id: "2",
-      title: "What Exactly is Angular?",
-      type: "Video",
-      duration: "1:49",
-      videoUrl: "https://www.youtube.com/embed/6IwqkzlON10?si=-ImgqykdwfLTDiAR",
+      time: "0:03",
+      text: "Learn how to send HTTP requests, implement routing, authenticate users or handle complex forms - and much more!",
     },
-    { id: "3", title: "Why Would You Use Angular?", type: "Article" },
-    { id: "4", title: "What Do You Know So Far?", type: "Exercise" },
+    {
+      time: "0:07",
+      text: "Learn how to send HTTP requests, implement routing, authenticate users or handle complex forms - and much more!",
+    },
   ];
-
-  const [selectedLessons, setSelectedLessons] = useState<number[]>([]);
-
-  const handleSelectLesson = (lessonIndex: number) => {
-    setSelectedLessons((prevSelected) =>
-      prevSelected.includes(lessonIndex)
-        ? prevSelected.filter((id) => id !== lessonIndex)
-        : [...prevSelected, lessonIndex]
-    );
-  };
 
   return (
-    <div className="bg-white text-black">
-      <div className="border-b-[1px] py-4">
-        <h2 className="text-2xl font-semibold px-8">Getting Started</h2>
+    <div className="p-8 flex flex-col gap-6">
+      <Breadcrumb className="text-sm text-blue-500">
+        <BreadcrumbList>
+          {breadcrumbs.map((item, index) => (
+            <BreadcrumbItem key={index}>
+              {item.href === "#" ? (
+                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+              ) : (
+                <>
+                  <BreadcrumbLink>
+                    <Link href={item.href}>{item.label}</Link>
+                  </BreadcrumbLink>
+                  {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+                </>
+              )}
+            </BreadcrumbItem>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+      <div className="relative w-full aspect-[16/9] rounded-lg shadow-lg overflow-hidden">
+        <iframe
+          className="w-full h-full"
+          src={videoUrl}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
-
-      <section className="px-8 mb-2">
-        <h3 className="text-lg font-semibold mb-4 py-4 border-b-[1px] my-4">Learning Objectives</h3>
-        <ul className="list-disc list-inside ml-2 space-y-1 text-gray-700">
-          {objectives.map((objective, index) => (
-            <li key={index}>{objective}</li>
+      <div className="mt-4 text-black p-4 rounded-lg bg-white shadow-md flex-1 overflow-auto">
+        <h4 className="text-xl font-bold mb-4">Welcome to the Course!</h4>
+        <Separator className="mb-4" />
+        <div className="space-y-4">
+          {transcript.map((item, index) => (
+            <div key={index} className="flex items-start gap-4">
+              <span className="font-semibold w-16 text-lg">{item.time}</span>
+              <span className="text-gray-800 leading-relaxed">{item.text}</span>
+            </div>
           ))}
-        </ul>
-      </section>
-
-      <section className="px-8">
-        <Accordion type="single" collapsible>
-          {lessons.map((lesson, index) => (
-            <AccordionItem key={index} value={`lesson-${index}`}>
-              <AccordionTrigger className="flex items-center justify-between p4 rounded-lg hover:bg-gray-50 focus:outline-none">
-                <div className="flex items-center">
-                  <div>
-                    {/* <Checkbox
-                      id={`lesson-${index}`}
-                      checked={selectedLessons.includes(index)}
-                      onCheckedChange={() => handleSelectLesson(index)}
-                      className="rounded-full"
-                    /> */}
-                  </div>
-                  <div className="ml4 flex flex-col">
-                    <Link href={`/courses/course/${courseSlug}/lesson/${lesson.id}/${lesson.id}`}>
-                      <h4
-                        className={`font-medium ${
-                          index === 0 ? "text-blue-600" : "text-gray-800"
-                        }`}
-                      >
-                        {lesson.title}
-                      </h4>
-                    </Link>
-                    <p className="text-start text-sm text-gray-600 mt-1">
-                      {lesson.type} {lesson.duration && `• ${lesson.duration}`}
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="p-4">
-                {lesson.videoUrl ? (
-                  <div className="aspect-w-16 aspect-h-9">
-                    <iframe
-                      width="100%"
-                      height="415"
-                      src={lesson.videoUrl}
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                ) : index === lessons.length - 1 ? (
-                  <LessonSummary />
-                ) : (
-                  <p className="text-gray-600">
-                    Content for this lesson will be available soon.
-                  </p>
-                )}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
+        </div>
+      </div>
     </div>
   );
 }

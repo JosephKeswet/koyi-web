@@ -6,16 +6,18 @@ import {
   AccordionContent,
   AccordionTrigger,
   AccordionItem,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"; // Shadcn components
 import { Checkbox } from "@/components/ui/checkbox";
+// import LessonSummary from "../_components/LessonSummary";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import LessonSummary from "../../_components/LessonSummary";
+import LessonSummary from "../../../course/_components/LessonSummary";
 
 export default function Page() {
   const params = useParams();
+  const searchParams = useParams();
+
   const courseSlug = params.slug;
- 
   
   const objectives = [
     "Learn modern Angular, including standalone components & signals from the ground up & in great detail.",
@@ -85,7 +87,7 @@ export default function Page() {
                     /> */}
                   </div>
                   <div className="ml4 flex flex-col">
-                    <Link href={`/courses/course/${courseSlug}/lesson/${lesson.id}}`}>
+                    <Link href={`/courses/course/${courseSlug}/lesson/${lesson.id}/${lesson.id}`}>
                       <h4
                         className={`font-medium ${
                           index === 0 ? "text-blue-600" : "text-gray-800"
