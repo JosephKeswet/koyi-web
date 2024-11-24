@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator"; // Shadcn Separator for styling
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb"; // Import Shadcn Breadcrumb components
+import { useParams } from "next/navigation";
 
 type TranscriptItem = {
   time: string;
@@ -17,7 +18,7 @@ type LessonDetailProps = {
 
 export default function LessonDetailPage({
   breadcrumbs = [
-    { label: 'Getting Started', href: '/courses/course/all/getting-started' },
+    // { label: 'Getting Started', href: '/courses/course/lesson' },
     { label: 'Welcome to the Course', href: '#' },
   ],
   videoUrl = "https://www.youtube.com/embed/6IwqkzlON10?si=-ImgqykdwfLTDiAR", // Default video URL
@@ -28,6 +29,9 @@ export default function LessonDetailPage({
     // More transcript items...
   ],
 }: LessonDetailProps) {
+  const params = useParams();
+  const courseSlug = params.slug;
+  
   return (
     <div className="p-8 h-screen flex flex-col gap-6">
       {/* Breadcrumb Navigation */}

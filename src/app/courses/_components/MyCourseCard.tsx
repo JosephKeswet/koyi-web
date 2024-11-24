@@ -27,7 +27,7 @@ export default function MyCourseCard({
 }: Props) {
   return (
     <Link
-      href={`/courses/${route}/${tab}`} // Unified route pattern for both mobile and desktop
+      href={`/courses/${route}/${tab}`}
       className="bg-white rounded-lg shadow-lg overflow-hidden"
     >
       <div className="relative h-40 w-full bg-gray-100">

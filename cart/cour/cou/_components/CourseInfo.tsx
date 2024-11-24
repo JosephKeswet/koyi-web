@@ -29,6 +29,7 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
 
   const params = useParams();
   const courseSlug = params.slug;
+  console.log(courseSlug);
 
   const lessons = [
     { id: 1, title: "Module 1 - Getting Started" },
@@ -143,7 +144,7 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
               {lessons.map((lesson) => (
                 <Link
                   key={lesson.id}
-                  href={`/courses/course/${courseSlug}/lesson/`}
+                  href={`/courses/course/${courseSlug}/lesson/${lesson.id}`}
                   className={`flex items-center gap-2 h-[40px] px-4 ${
                     selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
                   }`}
@@ -167,7 +168,6 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
         </Accordion>
         <div>
           <Link 
-            // onClick={handleGradesClick} 
             href={`/courses/course/${courseSlug}/grades`}
             className="text-lg font-bold text-primary-black block py-2"
           >

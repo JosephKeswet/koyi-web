@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { routes } from "@/lib/constants";
+import { routes } from "@/lib/constants"; // Assuming your routes are managed here
 
 export default function Grades() {
   const gradesData = [
@@ -12,12 +12,12 @@ export default function Grades() {
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="h-screen flex flex-col">
       <div className="flex px-4 py-4 items-center border-b-[1px] border-gray-100">
         <h1 className="text-2xl font-semibold ml-4">Grades</h1>
       </div>
 
-      <div className="flex flex-col justify-center p-4 px-8 md:px-[50px] 2xl:px-[200px] py-3 overflow-auto">
+      <div className="flex flex-col justify-center p-4 px-8 md:px-[50px] py-3 overflow-auto">
         <div className="flex flex-col space-y-6 px-8 ">
           {gradesData.map((data, index) => (
             <div key={index} className="flex flex-col gap-4">

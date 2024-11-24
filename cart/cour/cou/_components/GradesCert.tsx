@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { routes } from "@/lib/constants"; 
+import { routes } from "@/lib/constants"; // Assuming your routes are managed here
 
 export default function GradesCert() {
   const gradesData = [

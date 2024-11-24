@@ -5,6 +5,7 @@ export default function CourseRating() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
+  // Function to set the rating based on the selected star
   const handleRating = (index: number) => {
     setRating(index + 1);
   };
@@ -14,6 +15,8 @@ export default function CourseRating() {
       <h2 className="text-xl font-semibold text-center mb-6">
         How will you rate the course?
       </h2>
+
+      {/* Star Rating */}
       <div className="flex justify-center mb-4">
         {[...Array(5)].map((_, index) => (
           <button
@@ -28,6 +31,8 @@ export default function CourseRating() {
           </button>
         ))}
       </div>
+
+      {/* Comment Section */}
       <textarea
         className="w-full p-4 mb-6 border-b border-gray-300 focus:outline-none focus:border-blue-500"
         placeholder="Drop a comment"
@@ -35,6 +40,8 @@ export default function CourseRating() {
         onChange={(e) => setComment(e.target.value)}
         rows={4}
       />
+
+      {/* Buttons */}
       <div className="flex justify-between">
         <button className="px-6 py-3 text-sm font-semibold text-gray-700 border border-gray-400 rounded-md">
           Cancel

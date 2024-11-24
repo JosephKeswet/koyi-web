@@ -8,7 +8,6 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
-import SkillsTab from "../../../home/learn/_components/SkillTabs";
 import Tabs from "@/components/global/Tabs";
 
 type Props = {
@@ -18,8 +17,8 @@ type Props = {
 export default function Layout({ children }: Props) {
   const { ChatIcon, LearnIcon, GetHiredIcon, HireIcon } = icons;
   const params = useParams();
-  const pathname = usePathname();
   const field = params?.slug ? params.slug[1] : "";
+
   const tabs = [
     { routeKey: "all", value: "All courses" },
     { routeKey: "ongoing", value: "Ongoing courses" },

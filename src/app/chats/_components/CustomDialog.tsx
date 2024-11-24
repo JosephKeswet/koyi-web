@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 
 export default function CustomDialog({ button, activeDialog, setActiveDialog }) {
-    const [charges, setCharges] = useState([{ title: "", amount: "" }]);
+  const [charges, setCharges] = useState([{ title: "", amount: "" }]);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleAddCharge = () => {
     setCharges([...charges, { title: "", amount: "" }]);
@@ -18,18 +29,24 @@ export default function CustomDialog({ button, activeDialog, setActiveDialog }) 
     <Dialog onOpenChange={(open) => setActiveDialog(open ? button.id : null)}>
       <DialogTrigger asChild>
         <button
-          className="flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full"
+          className="flex-shrink-0 flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-full text-nowrap"
           style={{ display: activeDialog === button.id ? "none" : "flex" }}
         >
           {button.icon}
           {button.label}
         </button>
       </DialogTrigger>
-      <DialogContent className='h-[500px] overflow-y-auto'>
+      <DialogContent
+        className={`w-full lg:w-auto ${
+          isMobile
+            ? "fixed bottom-[50%] right-0 z-50 h-[80vh] overflow-y-auto rounded-t-lg bg-white p-6 shadow-lg  transform translate-y-full data-[state=open]:translate-y-0 transition-all duration-300 ease-in-out"
+            : "h-[80vh]"
+        }`}
+      >
         <DialogHeader>
           <DialogTitle>{button.label}</DialogTitle>
         </DialogHeader>
-         <div className="space-y-4">
+        <div className="space-y-4">
           {button.id === "scopeOfWork" && (
             <>
               <div>
@@ -113,7 +130,7 @@ export default function CustomDialog({ button, activeDialog, setActiveDialog }) 
               </button>
             </>
           )}
-           {button.id === "timeline" && (
+          {button.id === "timeline" && (
             <>
               <div>
                 <label htmlFor="projectName" className="block text-sm font-medium text-gray-700">
@@ -146,11 +163,15 @@ export default function CustomDialog({ button, activeDialog, setActiveDialog }) 
                 />
               </div>
             </>
-             )}
+          )}
         </div>
-        <DialogFooter className='flex flex-col justify-between items-center'>
-          <Button variant="secondary" onClick={() => setActiveDialog(null)}>Cancel</Button>
-          <Button variant="primary" onClick={() => setActiveDialog(null)}>Save and Share</Button>
+        <DialogFooter className="flex justify-between items-center">
+          <Button variant="secondary" onClick={() => setActiveDialog(null)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={() => setActiveDialog(null)}>
+            Save and Share
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
