@@ -1,12 +1,14 @@
 "use client";
 import { routes } from "@/lib/constants";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function BottomNavigation() {
   const router = useRouter();
   const pathName = usePathname();
+  const params = useParams();
+  const courseSlug = params.slug;
 
   const isActive = (routePath: string) => {
     return pathName.includes(routePath);
@@ -18,7 +20,7 @@ export default function BottomNavigation() {
         <HomeIcon color={isActive(routes.home) ? "#1260D6" : "#95989E"} />
         Home
       </NavItem>
-      <NavItem href={routes.courses} active={isActive(routes.courses)}>
+      <NavItem href={`${routes.courses}/all`} active={isActive(routes.courses)}>
         <CourseIcon color={isActive(routes.courses) ? "#1260D6" : "#95989E"} />
         My courses
       </NavItem>

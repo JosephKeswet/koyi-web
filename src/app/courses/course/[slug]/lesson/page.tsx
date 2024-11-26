@@ -1,22 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { Check } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionTrigger,
   AccordionItem,
 } from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import LessonSummary from "../../_components/LessonSummary";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb"; // Assuming ShadCN Breadcrumb component path
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Page() {
   const params = useParams();
   const courseSlug = params.slug;
- 
-  
+
   const objectives = [
     "Learn modern Angular, including standalone components & signals from the ground up & in great detail.",
     "Learn how to send HTTP requests, implement routing, authenticate users or handle complex forms - and much more!",
@@ -46,6 +46,8 @@ export default function Page() {
   ];
 
   const [selectedLessons, setSelectedLessons] = useState<number[]>([]);
+  const [showFullObjectives, setShowFullObjectives] = useState(false);
+  const [accordionOpen, setAccordionOpen] = useState<number | null>(null);
 
   const handleSelectLesson = (lessonIndex: number) => {
     setSelectedLessons((prevSelected) =>
@@ -55,37 +57,100 @@ export default function Page() {
     );
   };
 
+  const handleAccordionToggle = (index: number) => {
+    setAccordionOpen((prevIndex) => (prevIndex === index ? null : index));
+    setShowFullObjectives(false); // Collapse objectives when an accordion item is opened
+  };
+
+  const objectivesToShow = showFullObjectives
+    ? objectives
+    : objectives.slice(0, accordionOpen === null ? objectives.length : 2);
+
   return (
     <div className="bg-white text-black">
-      <div className="border-b-[1px] py-4">
-        <h2 className="text-2xl font-semibold px-8">Getting Started</h2>
+      {/* Mobile Breadcrumb Navigation using ShadCN */}
+      <Link
+        href={`/courses/course/${courseSlug}`}
+        className="md:hidden flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
+      >
+        <ChevronLeft />
+      </Link>
+      <div className="block lg:hidden py-4">
+        <Breadcrumb className="flex items-center text-sm text-gray-800">
+          <BreadcrumbItem className="flex-1 overflow-hidden">
+            <Link
+              href={`/courses/course/${courseSlug}`}
+              className="text-blue-600 font-semibold truncate"
+              style={{
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              Angular – The Complete Guide (2024 Edition)
+            </Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <ChevronRight className="text-gray-400 w-4 h-4 mx-1" />
+          </BreadcrumbItem>
+          <BreadcrumbItem className="flex-1 overflow-hidden">
+            <span
+              className="text-gray-600 font-medium truncate"
+              style={{
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              Module 1 - Get Started
+            </span>
+          </BreadcrumbItem>
+        </Breadcrumb>
       </div>
 
-      <section className="px-8 mb-2">
-        <h3 className="text-lg font-semibold mb-4 py-4 border-b-[1px] my-4">Learning Objectives</h3>
+      {/* Page Header */}
+      <div className="md:border-b-[1px] py-4 md:px-8 hidden lg:block">
+        <h2 className="text-2xl font-semibold">Get Started</h2>
+      </div>
+
+      {/* Learning Objectives */}
+      <section className="lg:px-8 mb-2 mt-4">
+        <h3 className="text-lg font-semibold mb-1 md:mb-4 py-4 border-b-[1px]">
+          Learning Objectives
+        </h3>
         <ul className="list-disc list-inside ml-2 space-y-1 text-gray-700">
-          {objectives.map((objective, index) => (
+          {objectivesToShow.map((objective, index) => (
             <li key={index}>{objective}</li>
           ))}
         </ul>
+        <button
+          onClick={() => setShowFullObjectives(!showFullObjectives)}
+          className="text-blue-600 text-sm mt-2"
+        >
+          {showFullObjectives ? "See Less" : "See More"}
+        </button>
       </section>
 
-      <section className="px-8">
+      {/* Lessons Accordion */}
+      <section className="lg:px-8 mt-6">
         <Accordion type="single" collapsible>
           {lessons.map((lesson, index) => (
             <AccordionItem key={index} value={`lesson-${index}`}>
-              <AccordionTrigger className="flex items-center justify-between p4 rounded-lg hover:bg-gray-50 focus:outline-none">
+              <AccordionTrigger
+                onClick={() => handleAccordionToggle(index)}
+                className="flex items-center justify-between ml-2 py-4 rounded-lg hover:bg-gray-50 focus:outline-none"
+              >
                 <div className="flex items-center">
-                  <div>
-                    {/* <Checkbox
-                      id={`lesson-${index}`}
-                      checked={selectedLessons.includes(index)}
-                      onCheckedChange={() => handleSelectLesson(index)}
-                      className="rounded-full"
-                    /> */}
-                  </div>
-                  <div className="ml4 flex flex-col">
-                    <Link href={`/courses/course/${courseSlug}/lesson/${lesson.id}}`}>
+                  {/* <Checkbox
+                    id={`lesson-${index}`}
+                    checked={selectedLessons.includes(index)}
+                    onCheckedChange={() => handleSelectLesson(index)}
+                    className="rounded-full mr-4"
+                  /> */}
+                  <div className="flex flex-col">
+                    <Link
+                      href={`/courses/course/${courseSlug}/lesson/${lesson.id}`}
+                    >
                       <h4
                         className={`font-medium ${
                           index === 0 ? "text-blue-600" : "text-gray-800"
@@ -99,6 +164,7 @@ export default function Page() {
                     </p>
                   </div>
                 </div>
+                <ChevronRight className="w-4 h-4 text-gray-500" />
               </AccordionTrigger>
               <AccordionContent className="p-4">
                 {lesson.videoUrl ? (

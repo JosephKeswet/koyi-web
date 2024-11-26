@@ -14,10 +14,12 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 
 type CourseInfoProps = {
-  handleMenuSelection?: (menuItem: string) => void;
+  // handleMenuSelection?: (menuItem: string) => void;
+  isMobile: boolean;
+  setShowSidebar: (value: boolean) => void;
 };
 
-export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
+export default function CourseInfo({ isMobile, setShowSidebar }: CourseInfoProps) {
   function Metrics({ icon, title }: { icon: any; title: string }) {
     return (
       <div className="flex items-center gap-1">
@@ -28,6 +30,7 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
   }
 
   const params = useParams();
+  const router = useRouter();
   const courseSlug = params.slug;
 
   const lessons = [
@@ -49,9 +52,16 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
     );
   };
 
+  const handleNavigation = (href: string) => {
+    router.push(href);
+    // if(isMobile) {
+      setShowSidebar(false);
+    // }
+  }
+
   return (
-    <div className="h-full overflow-auto md:overflow-hidden">
-      <section className="p-2 flex flex-col gap-4 min-h-screen md:h-screen">
+    <div className="h-full overflow-y-auto">
+      <section className="p-2 flex flex-col gap-4">
         <div className="space-y-2">
           <p className="text-lg font-bold text-primary-black">
             Angular - The Complete Guide (2024 Edition)
@@ -144,6 +154,11 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
                 <Link
                   key={lesson.id}
                   href={`/courses/course/${courseSlug}/lesson/`}
+                  onClick={() => {
+                    if(isMobile) {
+                      setShowSidebar(false);
+                    }
+                  }}
                   className={`flex items-center gap-2 h-[40px] px-4 ${
                     selectedLessons.includes(lesson.id) ? "bg-[#DEEBFF] " : ""
                   }`}
@@ -166,13 +181,12 @@ export default function CourseInfo({ handleMenuSelection }: CourseInfoProps) {
           </AccordionItem>
         </Accordion>
         <div>
-          <Link 
-            // onClick={handleGradesClick} 
-            href={`/courses/course/${courseSlug}/grades`}
+          <button  
+            onClick={() => handleNavigation(`/courses/course/${courseSlug}/grades`)}
             className="text-lg font-bold text-primary-black block py-2"
           >
             Grades
-          </Link>
+          </button>
         </div>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
