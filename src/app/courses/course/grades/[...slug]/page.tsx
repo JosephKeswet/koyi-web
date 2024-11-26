@@ -3,6 +3,6 @@
 import React from "react";
 import Grades from "../../_components/Grades";
 
-export default function GradesPage() {
-  return <Grades />;
+export default function Page() {
+	return <Grades />;
 }
