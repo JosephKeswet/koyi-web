@@ -101,6 +101,8 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 							<Image
 								src={chat.avatar}
 								alt={chat.name}
+								layout='fill'
+								objectFit="cover"
 							/>
 						</Avatar>
 						<div className="flex-1">

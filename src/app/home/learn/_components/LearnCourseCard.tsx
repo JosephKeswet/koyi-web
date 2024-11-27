@@ -9,7 +9,7 @@ type Props = {
   routeParam?: string;
   duration?: string;
   enrolled?: string;
-  imageUrl?: StaticImageData |string;
+  imageUrl?: string;
 };
 
 export default function LearnCourseCard({ title, routeParam, duration, enrolled, imageUrl }: Props) {
@@ -22,6 +22,8 @@ export default function LearnCourseCard({ title, routeParam, duration, enrolled,
         <Image
           src=''
           alt=''
+          layout="fill"
+          objectFit="cover"
           className="object-cover w-full h-full"
         />
       </div>

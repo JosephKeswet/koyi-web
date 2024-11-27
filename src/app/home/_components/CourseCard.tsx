@@ -18,6 +18,8 @@ export default function CourseCard({routeParam}:Props) {
         <Image
           src="/images/frontend-dev.jpg"
           alt="Front End Development"
+          objectFit="cover"
+          layout="fill"
           className="object-cover w-full h-full"
         />
       </div>
