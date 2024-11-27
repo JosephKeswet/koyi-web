@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
 import Tabs from "@/components/global/Tabs";
+import { CourseTabs } from "@/lib/constants/enums";
 
 type Props = {
   children: React.ReactNode;
@@ -20,9 +21,9 @@ export default function Layout({ children }: Props) {
   const field = params?.slug ? params.slug[1] : "";
 
   const tabs = [
-    { routeKey: "all", value: "All courses" },
-    { routeKey: "ongoing", value: "Ongoing courses" },
-    { routeKey: "completed", value: "Completed courses" },
+    { routeKey: "all", value: CourseTabs.All },
+    { routeKey: "ongoing", value: CourseTabs.Ongoing },
+    { routeKey: "completed", value: CourseTabs.Completed },
   ];
 
   return (

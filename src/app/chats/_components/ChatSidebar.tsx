@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Search, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
+import Image from "next/image";
 
 type Props = {
 	onSelectChat: (chatId: string) => void;
@@ -97,7 +98,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 						} roundedlg cursor-pointer`}
 					>
 						<Avatar className="w-10 h-10 rounded-full">
-							<img
+							<Image
 								src={chat.avatar}
 								alt={chat.name}
 							/>

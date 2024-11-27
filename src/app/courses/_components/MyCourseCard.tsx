@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Clock, Users } from "lucide-react";
 import React from "react";
+import Image from "next/image";
 
 type Props = {
   title: string; 
@@ -31,7 +32,7 @@ export default function MyCourseCard({
       className="bg-white rounded-lg shadow-lg overflow-hidden"
     >
       <div className="relative h-40 w-full bg-gray-100">
-        <img
+        <Image
           src={imageUrl}
           alt={title}
           className="object-cover w-full h-full"

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/constants";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -14,7 +15,7 @@ export default function CourseCard({routeParam}:Props) {
   return (
     <Link href={`${routes.learn_course}/${routeParam}`} className="min-w-[300px] lg:min-w-[350px] bg-white border rounded-lg shadow-md p-4 flex flex-col">
       <div className="relative h-52 w-full bg-gray-100 rounded-lg overflow-hidden">
-        <img
+        <Image
           src="/images/frontend-dev.jpg"
           alt="Front End Development"
           className="object-cover w-full h-full"

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SkillsTab from "../_components/SkillTabs";
 import SearchComponent from "@/components/global/SearchComponent";
+import { HomeLearnTabs } from "@/lib/constants/enums";
 
 type Props = {
   children: React.ReactNode;
@@ -20,8 +21,9 @@ export default function Layout({ children }: Props) {
   const params = useParams();
   const pathname = usePathname();
   const field = params?.slug ? params.slug[0] : "";
-  const tabs = ["Flutter", "React", "Vue"];
-
+  const tabs = Object.values(HomeLearnTabs);
+  console.log(field);
+  
   return (
     <div className="h-screen flex flex-col">
       <DashboardHeader>
