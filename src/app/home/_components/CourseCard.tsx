@@ -16,10 +16,10 @@ export default function CourseCard({routeParam}:Props) {
     <Link href={`${routes.learn_course}/${routeParam}`} className="min-w-[300px] lg:min-w-[350px] bg-white border rounded-lg shadow-md p-4 flex flex-col">
       <div className="relative h-52 w-full bg-gray-100 rounded-lg overflow-hidden">
         <Image
-          src="/images/frontend-dev.jpg"
+          src=""
           alt="Front End Development"
-          objectFit="cover"
-          layout="fill"
+          width={100}
+          height={100}
           className="object-cover w-full h-full"
         />
       </div>

@@ -20,7 +20,7 @@ export default function SectionTab({ field, tabs, defaultTab }: SectionTabProps)
     <div className="flex items-center w-full border-b pt-3 px-[20px]">
       {tabs.map((tab) => {
         const isActive = activeTab.toLowerCase() === tab.routeKey.toLowerCase();
-        console.log(isActive)
+
         return (
           <Link
             href={`${routes.settings_account}/${tab.routeKey.toLowerCase()}`}

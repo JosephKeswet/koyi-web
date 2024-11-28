@@ -99,7 +99,7 @@ export default function Sidebar() {
               <div className="pb-6">
                 <SidebarComponent.Dropdown
                   hasItems={false}
-                  route={`${routes.settings_account}`}
+                  route={`${routes.settings}`}
                 >
                   <SidebarComponent.DropdownTrigger
                     icon={

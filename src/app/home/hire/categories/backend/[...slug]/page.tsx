@@ -57,9 +57,8 @@ export default function Page() {
           <Image
             src={cardData.imageUrl}
             alt="Profile Image"
-            fill
-            style={{ objectFit: "cover" }}
-            className="rounded-full"
+            width={100}
+            height={36}
           />
         </div>
         <div className="flex flex-col">
@@ -101,9 +100,8 @@ export default function Page() {
               <Image
                 src={img}
                 alt={`Portfolio ${index + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-md"
+                width={100}
+                height={100}
               />
             </div>
           ))}
@@ -118,9 +116,8 @@ export default function Page() {
               <Image
                 src={img}
                 alt={`Certificate ${index + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                className="rounded-md"
+                width={100}
+                height={100}
               />
             </div>
           ))}
@@ -138,7 +135,6 @@ export default function Page() {
                   alt={review.author}
                   width={48}
                   height={48}
-                  className="rounded-full"
                 />
               </div>
               <div>

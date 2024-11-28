@@ -71,13 +71,12 @@ console.log(sectionField)
         </div>
 
       <div className=" h-60 w-full bg-black mt-4">
-        {/* <Image
+        <Image
           src="/images/cover-image.jpg"
           alt="Professional Cover"
-          objectFit="cover"
-          layout="fill"
-          className="object-cover w-full h-full"
-        /> */}
+          width={100}
+          height={100}
+        />
         <Link href='#' className="absolute top-4 right-4 text-white">
           Edit
         </Link>
@@ -86,13 +85,14 @@ console.log(sectionField)
       <div className="max-w-5xl">
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center">
-            {/* <Image
-              src="/images/profile-picture.jpg"
+            <div className="w-24 h-24">
+            <Image
+              src=""
               alt="Profile Picture"
-              objectFit="cover"
-              layout="fill"
-              className="w-24 h-24 -mt-12"
-            /> */}
+              width={100}
+              height={100}
+            />
+            </div>
             <div className="ml-6 flex-1">
               <h1 className="text-xl font-semibold">Cyril John</h1>
               <p className="text-sm text-gray-600">3 years</p>

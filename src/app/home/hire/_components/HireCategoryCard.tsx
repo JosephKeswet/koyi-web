@@ -28,12 +28,14 @@ export default function HireCategoryCard({category}: Props) {
       className='bg-primary-grey rounded-lg hover:shadow-sm transition-shadow'
     >
       <div className="flex items-center w-auto h-[100px] flex-shrink-0">
+        <div className='w-1/3 h-full'>
       <Image
             src={role.imageUrl}
             alt={role.title}
-            className="w-1/3 h-full rounded-l-md"
+            width={100}
+            height={100}
           />
-
+          </div>
       <div className='ml-4 flex-1'>
         <h2 className='text-lg font-semibold text-gray-800'>{role.title}</h2>
       </div>

@@ -23,7 +23,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 				name: "Kayode-eko",
 				lastMessage: "Hi there! I'm interested in hiring you.",
 				time: "Now",
-				avatar: "/images/client1.jpg",
+				avatar: "",
 				unreadCount: null,
 				status: "sent",
 			},
@@ -32,7 +32,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 				name: "Claire Faith",
 				lastMessage: "Are you there?",
 				time: "Now",
-				avatar: "/images/client2.jpg",
+				avatar: "",
 				unreadCount: 2,
 				status: null,
 			},
@@ -43,7 +43,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 				name: "John Doe",
 				lastMessage: "Can you help with the project?",
 				time: "1 hr ago",
-				avatar: "/images/client3.jpg",
+				avatar: "",
 				unreadCount: null,
 				status: "sent",
 			},
@@ -52,7 +52,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 				name: "Jane Smith",
 				lastMessage: "I'll get back to you on this.",
 				time: "2 hrs ago",
-				avatar: "/images/client4.jpg",
+				avatar: "",
 				unreadCount: null,
 				status: null,
 			},
@@ -101,8 +101,8 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 							<Image
 								src={chat.avatar}
 								alt={chat.name}
-								layout='fill'
-								objectFit="cover"
+								width={10}
+								height={10}
 							/>
 						</Avatar>
 						<div className="flex-1">

@@ -36,7 +36,7 @@ export default function ChatHeader({ roomId, onBackToSidebar }: Props) {
           </button>
         )}
         <Avatar className="w-10 h-10 rounded-full">
-          <Image src="/images/client1.jpg" alt="Client 1" layout="fill" objectFit="cover" />
+          <Image src="" alt="Client 1" width={10} height={10} />
         </Avatar>
         <div>
           <h2 className="text-lg font-bold">Oyale John</h2>
