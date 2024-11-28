@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ChevronLeft, Phone } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
+import Image from "next/image";
 
 type Props = {
   roomId: string;
@@ -35,7 +36,7 @@ export default function ChatHeader({ roomId, onBackToSidebar }: Props) {
           </button>
         )}
         <Avatar className="w-10 h-10 rounded-full">
-          <img src="/images/client1.jpg" alt="Client 1" />
+          <Image src="/images/client1.jpg" alt="Client 1" layout="fill" objectFit="cover" />
         </Avatar>
         <div>
           <h2 className="text-lg font-bold">Oyale John</h2>

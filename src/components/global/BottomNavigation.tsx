@@ -1,7 +1,7 @@
 "use client";
 import { routes } from "@/lib/constants";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function BottomNavigation() {
