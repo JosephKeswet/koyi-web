@@ -21,7 +21,7 @@ export default function page({}: Props) {
 		{
 			title: "Swift Developer",
 			route: "/hire/categories/swift",
-			imageUrl: "/images/developer1.jpg",
+			imageUrl: "",
 			technologies: ["Swift", "React Native"],
 			experience: "3 years",
 			projects: 13,
@@ -32,7 +32,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter Developer",
 			route: "/hire/categories/flutter",
-			imageUrl: "/images/developer2.jpg",
+			imageUrl: "",
 			technologies: ["Flutter"],
 			experience: "2+ years",
 			projects: 7,
@@ -43,7 +43,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter & Angular Developer",
 			route: "/hire/categories/flutter-angular",
-			imageUrl: "/images/developer3.jpg",
+			imageUrl: "",
 			technologies: ["Flutter", "Angular"],
 			experience: "3 years",
 			projects: 19,
@@ -54,7 +54,7 @@ export default function page({}: Props) {
 		{
 			title: "Swift & React Native Developer",
 			route: "/hire/categories/swift-react-native",
-			imageUrl: "/images/developer4.jpg",
+			imageUrl: "",
 			technologies: ["Swift", "React Native"],
 			experience: "3 years",
 			projects: 13,
@@ -65,7 +65,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter Developer",
 			route: "/hire/categories/flutter-2",
-			imageUrl: "/images/developer5.jpg",
+			imageUrl: "",
 			technologies: ["Flutter"],
 			experience: "2+ years",
 			projects: 7,
@@ -76,7 +76,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter & Angular Developer",
 			route: "/hire/categories/flutter-angular-2",
-			imageUrl: "/images/developer6.jpg",
+			imageUrl: "",
 			technologies: ["Flutter", "Angular"],
 			experience: "3 years",
 			projects: 19,
@@ -87,7 +87,7 @@ export default function page({}: Props) {
 		{
 			title: "Swift & React Native Developer",
 			route: "/hire/categories/swift-react-native-2",
-			imageUrl: "/images/developer7.jpg",
+			imageUrl: "",
 			technologies: ["Swift", "React Native"],
 			experience: "3 years",
 			projects: 13,
@@ -98,7 +98,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter Developer",
 			route: "/hire/categories/flutter-3",
-			imageUrl: "/images/developer8.jpg",
+			imageUrl: "",
 			technologies: ["Flutter"],
 			experience: "2+ years",
 			projects: 7,
@@ -109,7 +109,7 @@ export default function page({}: Props) {
 		{
 			title: "Flutter & Angular Developer",
 			route: "/hire/categories/flutter-angular-3",
-			imageUrl: "/images/developer9.jpg",
+			imageUrl: "",
 			technologies: ["Flutter", "Angular"],
 			experience: "3 years",
 			projects: 19,

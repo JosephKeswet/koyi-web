@@ -4,23 +4,28 @@ import { usePathname } from "next/navigation";
 
 interface SectionTabProps {
   field: string | string[];
-  tabs: { routeKey: string; value: string}[]; // Array of tab names fetched from the backend
+  tabs: { routeKey: string; value: string }[]; // Array of tab names fetched from the backend
   defaultTab?: string; // Optional default tab
 }
 
-export default function SectionTab({ field, tabs, defaultTab }: SectionTabProps) {
+export default function SectionTab({
+  field,
+  tabs,
+  defaultTab,
+}: SectionTabProps) {
   const pathname = usePathname();
 
   // Ensure `slug` exists and has at least two parts before accessing `slug[1]`
   const activeTab =
-    tabs.find((tab) => pathname.includes(tab.routeKey.toLowerCase()))?.routeKey 
-    || defaultTab 
-    || tabs[0].routeKey;
+    tabs.find((tab) => pathname.includes(tab.routeKey.toLowerCase()))
+      ?.routeKey ||
+    defaultTab ||
+    tabs[0].routeKey;
   return (
     <div className="flex items-center w-full border-b pt-3 px-[20px]">
       {tabs.map((tab) => {
         const isActive = activeTab.toLowerCase() === tab.routeKey.toLowerCase();
-        console.log(isActive)
+
         return (
           <Link
             href={`${routes.settings_account}/${tab.routeKey.toLowerCase()}`}

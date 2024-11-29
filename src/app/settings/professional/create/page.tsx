@@ -40,7 +40,7 @@ export default function Page({}: Props) {
       </DashboardHeader>
 
       <div className="w-full md:w-7/12 gap-[60px] p-3 lg:p-[50px]">
-      {/* Navigation and Step Progress */}
+
       <div className="flex items-center gap-3 mb-6">
         <Button variant="ghost" className="p-0">
           <ChevronLeft size={24} />
@@ -59,9 +59,8 @@ export default function Page({}: Props) {
         </div>
       </div>
 
-      {/* Form */}
       <form>
-        {/* Role Input */}
+
         <div className="mb-6">
           <label htmlFor="role" className="block text-sm font-medium mb-2">
             Role
@@ -69,7 +68,6 @@ export default function Page({}: Props) {
           <Input id="role" type="text" placeholder="Select a role" />
         </div>
 
-        {/* Skills Section */}
         <div className="mb-6">
           <label htmlFor="skills" className="block text-sm font-medium mb-2">
             Skills
@@ -82,7 +80,6 @@ export default function Page({}: Props) {
           </div>
         </div>
 
-        {/* Portfolio */}
         <div className="mb-6">
           <Card className="border-dashed border-2 h-48 flex items-center justify-center text-center">
             <CardContent>
@@ -95,7 +92,6 @@ export default function Page({}: Props) {
           <Input id="website" type="text" placeholder="website.com" className="mt-4" />
         </div>
 
-        {/* Projects Section */}
         <div className="mb-6">
           <Button variant="ghost" className="flex items-center gap-2 text-blue-500">
             <Plus size={16} />
@@ -103,7 +99,6 @@ export default function Page({}: Props) {
           </Button>
         </div>
 
-        {/* Certifications Section */}
         <div className="mb-6">
           <label htmlFor="certificate" className="block text-sm font-medium mb-2">
             Certificate Title
@@ -131,7 +126,6 @@ export default function Page({}: Props) {
           </Button>
         </div>
 
-        {/* Footer */}
         <div className="flex justify-between items-center mt-8">
           <Button variant="outline">Previous Page</Button>
           <Button>Create Profile</Button>

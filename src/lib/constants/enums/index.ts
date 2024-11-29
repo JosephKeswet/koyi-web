@@ -24,7 +24,8 @@ export enum CourseTabs {
 export enum SettingsSectionTab {
 	Profile = "Profile",
 	ProfessionalProfile = "Professional Profile",
-	General = "General"
+	General = "General",
+	Payment = "Payment"
 }
 
 export enum SettingsProfileTabs {
@@ -32,4 +33,13 @@ export enum SettingsProfileTabs {
 	Portfolio = "My Portfolio",
 	Certificate = "My Certificate",
 	Reviews = "Reviews"
+}
+
+export enum SettingsPaymentTableHeader {
+	TransactionId = "Transaction ID",
+	WithdrawalAmount = "Withdrawal amount",
+	PaymentMethod = "Payment method",
+	AccountDetails = "Account Details",
+	Status = "Status",
+	DateInitiated = "Date initiated"
 }

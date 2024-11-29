@@ -7,12 +7,15 @@ import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { SettingsProfileTabs, SettingsSectionTab } from "@/lib/constants/enums";
-import SectionTab from "../_components/SectionTab";
 import Image from "next/image";
 import Link from "next/link";
-type Props = {};
+import SectionTab from "../_components/SectionTab";
 
-export default function Page({}: Props) {
+type Props = {
+    children: React.ReactNode;
+};
+
+export default function Layout({ children }: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const router = useRouter();
@@ -61,7 +64,7 @@ console.log(sectionField)
         </DashboardHeader.MainHeader>
       </DashboardHeader>
 
-      <div className="p-3 md:px-[50px]">
+      <div className="p-3 md:px-[50px] w-full">
         <div className="max-w-5xl pt-6">
           <SectionTab 
             field={sectionField} 
@@ -70,59 +73,8 @@ console.log(sectionField)
           />
         </div>
 
-      <div className=" h-60 w-full bg-black mt-4">
-        {/* <Image
-          src="/images/cover-image.jpg"
-          alt="Professional Cover"
-          objectFit="cover"
-          layout="fill"
-          className="object-cover w-full h-full"
-        /> */}
-        <Link href='#' className="absolute top-4 right-4 text-white">
-          Edit
-        </Link>
-      </div>
-
-      <div className="max-w-5xl">
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <div className="flex items-center">
-            {/* <Image
-              src="/images/profile-picture.jpg"
-              alt="Profile Picture"
-              objectFit="cover"
-              layout="fill"
-              className="w-24 h-24 -mt-12"
-            /> */}
-            <div className="ml-6 flex-1">
-              <h1 className="text-xl font-semibold">Cyril John</h1>
-              <p className="text-sm text-gray-600">3 years</p>
-              <div className="flex gap-2 mt-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
-                  Swift
-                </span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
-                  React Native
-                </span>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-lg font-bold">From ₦100,000</p>
-              <Button variant="default" className="mt-2">
-                Edit Profile
-              </Button>
-            </div>
-          </div>
+      <div>{children}</div>
         </div>
-      </div>
-
-      <div className="pt-4 md:px-0 md:pt-6">
-        <SectionTab 
-          field={tabField} 
-          tabs={tab}
-          defaultTab={tab[0].routeKey}
-        />
-      </div>
-    </div>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function Page({}: Props) {
 			status: "ongoing",
 			duration: "6-10 hours",
 			enrolled: "6,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "Frontend Developer",
@@ -26,7 +26,7 @@ export default function Page({}: Props) {
 			status: "completed",
 			duration: "12-20 hours",
 			enrolled: "4,500",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "Fullstack Developer",
@@ -34,7 +34,7 @@ export default function Page({}: Props) {
 			status: "completed",
 			duration: "10-15 hours",
 			enrolled: "7,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "React Developer",
@@ -42,7 +42,7 @@ export default function Page({}: Props) {
 			status: "ongoing",
 			duration: "8-12 hours",
 			enrolled: "5,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "Backend Development",
@@ -50,7 +50,7 @@ export default function Page({}: Props) {
 			status: "ongoing",
 			duration: "6-10 hours",
 			enrolled: "6,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "Frontend Developer",
@@ -58,7 +58,7 @@ export default function Page({}: Props) {
 			status: "completed",
 			duration: "12-20 hours",
 			enrolled: "4,500",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "Fullstack Developer",
@@ -66,7 +66,7 @@ export default function Page({}: Props) {
 			status: "completed",
 			duration: "10-15 hours",
 			enrolled: "7,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 		{
 			title: "React Developer",
@@ -74,7 +74,7 @@ export default function Page({}: Props) {
 			status: "ongoing",
 			duration: "8-12 hours",
 			enrolled: "5,000",
-			imageUrl: "/path-to-image.jpg",
+			imageUrl: "",
 		},
 	];
 
