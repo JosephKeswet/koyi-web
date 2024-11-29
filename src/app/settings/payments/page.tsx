@@ -2,8 +2,8 @@
 import DashboardHeader from "@/components/global/DashboardHeader";
 import React, { useState } from "react";
 import { icons } from "@/lib/constants/icons";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { SettingsProfileTabs, SettingsSectionTab } from "@/lib/constants/enums";
+import { useParams, usePathname } from "next/navigation";
+import { SettingsSectionTab } from "@/lib/constants/enums";
 import SectionTab from "../account/_components/SectionTab";
 import FilterTableItem from "./_components/FilterTableItem";
 import { DataTable } from "./_components/tableInterface/DataTable";
@@ -12,22 +12,24 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SortSelection } from "./_components/SortSelection";
 import SearchTable from "./_components/SearchTable";
+import { Plus } from "lucide-react";
 type Props = {};
 
 export default function Page({}: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-  const router = useRouter();
+
   const pathname = usePathname();
+  const splitPath = pathname.split('/');
+  const pageName = splitPath[2];
   const params = useParams();
   const sectionField = params?.slug;
-  const tabField = params?.slug;
-  const splitPath = pathname.split('/')
-  const pageName = splitPath[2]
+
   const openRegistrationModal = () => {
     setIsModalOpen(true);
   };
-console.log(sectionField)
   const sectionTab = [
     {routeKey: "profile", value: SettingsSectionTab.Profile},
     {routeKey: "professional-profile", value: SettingsSectionTab.ProfessionalProfile},
@@ -78,6 +80,17 @@ console.log(sectionField)
   ]
 
   const { ChatIcon } = icons;
+
+  const handleButtonClick = () => {
+    setIsDialogOpen(true);
+    // setIsSuccess(false);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+    setIsSuccess(false);
+  }
+
   return (
     <div className="bg-white h-screen flex flex-col overflow-hidden">
       <DashboardHeader>
@@ -120,9 +133,61 @@ console.log(sectionField)
             <p className="text-xs">As of 4.20pm</p>
             </div>
             <div>
-              <Button variant='outline' >
+              <Button 
+                className="bg-primary-light text-primary" 
+                variant='outline' 
+                onClick={handleButtonClick}
+              >
                 Withdraw
               </Button>
+              {isDialogOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+            {isSuccess ? (
+                            <div className="bg-white p-6 rounded-md shadow-lg w-60 md:min-w-[150px]">
+              <div className="text-center">
+                <h2 className="text-lg font-semibold">Withdrawal Successful</h2>
+                <p className="mt-4">Your withdrawal has been successfully processed.</p>
+                <Button
+                  className="mt-6 bg-primary text-white"
+                  variant="outline"
+                  onClick={handleCloseDialog}
+                >
+                  Close
+                </Button>
+              </div>
+              </div>
+            ) : (
+              <div className="bg-white p-6 rounded-md shadow-lg w-90 md:min-w-[500px]">
+              <div className="space-y-6">
+                <h2 className="text-lg font-semibold">Withdraw</h2>
+                <p>Please fill out the input boxes to withdraw.</p>
+                <div>
+                  <p>Available to withdraw</p>
+                  <p>#250,000</p>
+                </div>
+                <div className="flex gap-3 p-2 border rounded-lg text-primary">
+                  <Plus /> <span>Add bank account</span>
+                </div>
+
+                <div className="mt-4 flex justify-between gap-4">
+                  <Button onClick={handleCloseDialog} variant="outline">
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setIsSuccess(true);
+                    }}
+                    variant="default"
+                    className="bg-primary opacity-50 text-white px-6"
+                  >
+                    Withdraw
+                  </Button>
+                </div>
+              </div>
+              </div>
+            )}
+          </div> 
+      )}
             </div>
           </div>
         </div>
