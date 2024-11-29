@@ -6,6 +6,8 @@ import React from "react";
 
 type Props = {
   text: string;
+  route: string;
+  field: string
 };
 
 export default function FilterTableItem({ text, route, field }: Props) {

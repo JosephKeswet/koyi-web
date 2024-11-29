@@ -120,16 +120,18 @@ console.log(sectionField)
             <p className="text-xs">As of 4.20pm</p>
             </div>
             <div>
-              <Button />
+              <Button variant='outline' >
+                Withdraw
+              </Button>
             </div>
           </div>
         </div>
 
         <div className="flex justify-start gap-4">
-            <FilterTableItem text="All" />
-            <FilterTableItem text="Successful" />
-            <FilterTableItem text="Ongoing" />
-            <FilterTableItem text="Cancelled" />
+            <FilterTableItem text="All" route={""} field={""} />
+            <FilterTableItem text="Successful" route={""} field={""} />
+            <FilterTableItem text="Ongoing" route={""} field={""} />
+            <FilterTableItem text="Cancelled" route={""} field={""} />
         </div>
         </div>
         <Card>
