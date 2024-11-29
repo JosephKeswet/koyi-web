@@ -18,11 +18,10 @@ export default function Page({}: Props) {
   const router = useRouter();
   const params = useParams();
   const sectionField = params?.slug;
-  const tabField = params?.slug[1] ? params.slug[1] : "bio";
+  const tabField = params?.slug ? params.slug : "bio";
   const openRegistrationModal = () => {
     setIsModalOpen(true);
   };
-console.log(sectionField)
   const sectionTab = [
     {routeKey: "profile", value: SettingsSectionTab.Profile},
     {routeKey: "professional-profile", value: SettingsSectionTab.ProfessionalProfile},
@@ -40,36 +39,7 @@ console.log(sectionField)
 
   const { ChatIcon } = icons;
   return (
-    <div className="bg-white h-screen flex flex-col">
-      <DashboardHeader>
-        <DashboardHeader.MainHeader
-          searchFunc={() => {}}
-          downloadXLX={() => {}}
-          title="Settings"
-          createFunction={openRegistrationModal}
-        >
-          <DashboardHeader.HeaderText />
-          <DashboardHeader.HeaderContainer>
-            <DashboardHeader.HeaderSearch />
-            <div className="hidden lg:flex items-center gap-4">
-              <div className="ml-0 lg:ml-[40px]">
-                <ChatIcon color="#95989E" />
-              </div>
-              <DashboardHeader.HeaderAvatarProfile />
-            </div>
-          </DashboardHeader.HeaderContainer>
-        </DashboardHeader.MainHeader>
-      </DashboardHeader>
-
-      <div className="p-3 md:px-[50px] w-full">
-        <div className="max-w-5xl pt-6">
-          <SectionTab 
-            field={sectionField} 
-            tabs={sectionTab} 
-            defaultTab={sectionTab[0].routeKey} 
-          />
-        </div>
-
+    <div>
       <div className=" h-60 w-full bg-black mt-4">
         <Image
           src=""
@@ -208,7 +178,6 @@ console.log(sectionField)
           </div>
         {/* )} */}
       </div>
-    </div>
     </div>
   );
 }
