@@ -15,6 +15,7 @@ type Props = {
 	enrolled: string;
 	imageUrl: string;
 	category: string;
+	courseId: string;
 };
 
 export default function MyCourseCard({
@@ -25,10 +26,11 @@ export default function MyCourseCard({
 	enrolled,
 	imageUrl,
 	category,
+	courseId,
 }: Props) {
 	return (
 		<Link
-			href={`/courses/${route}/${tab}`}
+			href={`/courses/course/lesson/${courseId}`}
 			className="bg-white rounded-lg shadow-lg overflow-hidden"
 		>
 			<div className="relative h-40 w-full bg-gray-100">

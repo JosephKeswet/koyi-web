@@ -98,6 +98,7 @@ export default function Page({}: Props) {
 						enrolled={course.enrolled}
 						imageUrl={course.imageUrl}
 						category={course.category}
+						courseId="1"
 					/>
 				))
 			) : (

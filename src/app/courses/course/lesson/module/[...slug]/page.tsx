@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import CourseInfo from "../../_components/CourseInfo";
 import { useParams } from "next/navigation";
 
 export default function Page() {
