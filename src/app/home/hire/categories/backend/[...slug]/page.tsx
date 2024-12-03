@@ -8,7 +8,7 @@ import React from "react";
 
 const hireCardsData = [
   {
-    slug: "mobile-developer",
+    slug: "swift-developer",
     title: "Cyril John",
     role: "Mobile Developer",
     technologies: ["Swift", "React Native"],
@@ -39,7 +39,7 @@ export default function Page() {
   const cardData = hireCardsData[0];
 
   return (
-    <div className="flex flex-col gap-8 p-4 md:p-8">
+    <div className="flex flex-col gap-8 p-3 md:px-[50px] w-full">
 
       <div className="flex items-center gap-4 md:gap-[32px]">
         <Link
@@ -57,8 +57,8 @@ export default function Page() {
           <Image
             src={cardData.imageUrl}
             alt="Profile Image"
-            width={100}
-            height={36}
+            width={1000}
+            height={1000}
           />
         </div>
         <div className="flex flex-col">
@@ -92,37 +92,45 @@ export default function Page() {
         </ul>
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-xl font-bold mb-4">My Portfolio</h2>
-        <div className="relative grid grid-cols-2 md:grid-cols-3 gap-4">
-          {cardData.portfolioImages.map((img, index) => (
-            <div key={index} className="relative aspect-w-16 aspect-h-9">
-              <Image
-                src={img}
-                alt={`Portfolio ${index + 1}`}
-                width={100}
-                height={100}
-              />
+      <div className="">
+            <h3 className="text-lg font-semibold mb-4">My Portfolio</h3>
+            <div className="flex overflow-x-scroll space-x-4">
+              {[1, 2, 3, 4].map((_, i) => (
+                <div key={i} className="min-w-[300px] flex relative">
+                  <Image
+                    src=""
+                    alt="Portfolio"
+                    width={1000}
+                    height={1000}
+                    className="object-cover"
+                  />
+                  <div className='absolute bottom-4 right-3'>
+                  <p className="p-1 text-sm text-gray-600 rounded-full bg-gray-300 ">website.com</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="mt-8">
-        <h2 className="text-xl font-bold mb-4">Certificates</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {cardData.certificates.map((img, index) => (
-            <div key={index} className="relative aspect-w-16 aspect-h-9">
-              <Image
-                src={img}
-                alt={`Certificate ${index + 1}`}
-                width={100}
-                height={100}
-              />
+          <div className="">
+            <h3 className="text-lg font-semibold mb-4">My Certificate</h3>
+            <div className="flex overflow-x-scroll space-x-4">
+              {[1, 2, 3, 4].map((_, i) => (
+                <div key={i} className="min-w-[300px] flex relative">
+                  <Image
+                    src=""
+                    alt="Portfolio"
+                    width={1000}
+                    height={1000}
+                    className="object-cover"
+                  />
+                  <div className='absolute bottom-4 right-3'>
+                  <p className="p-1 text-sm text-gray-600 rounded-full bg-gray-300 ">website.com</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Reviews</h2>

@@ -69,7 +69,7 @@ export default function Sidebar() {
 										icon={
 											<CourseIcon
 												color={
-													pathname.includes(routes.courses)
+													pathname.includes(`${routes.courses}/all`)
 														? "#1260D6"
 														: "#95989E"
 												}

@@ -60,7 +60,7 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 	};
 
 	return (
-		<div className=" w-full h-full ">
+		<div className="">
 			<div className="flex borderb text-sm font-semibold mb-4 p-4 lg:p-0">
 				{tabs.map((tab) => (
 					<button

@@ -33,7 +33,8 @@ export default function HireCategoryCard({category}: Props) {
             src={role.imageUrl}
             alt={role.title}
             width={100}
-            height={100}
+            height={400}
+            className='w-full h-full'
           />
           </div>
       <div className='ml-4 flex-1'>
