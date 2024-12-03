@@ -78,7 +78,7 @@ export default function Layout({ children }: Props) {
         ) : (
           <> */}
             <div className="w-1/3 h-full overflow-y-scroll bg-white border-r">
-              <ChatSidebar onSelectChat={handleChatSelect} />
+              <ChatSidebar />
             </div>
             <div className="flex-1 overflow-y-scroll bg-white">
               {/* {activeChat ? (

@@ -81,13 +81,13 @@ export default function Sidebar() {
 								</SidebarComponent.Dropdown>
 								<SidebarComponent.Dropdown
 									hasItems={false}
-									route={routes.chats}
+									route={`${routes.chats}/client`}
 								>
 									<SidebarComponent.DropdownTrigger
 										icon={
 											<ChatIcon
 												color={
-													pathname.includes(routes.chats)
+													pathname.includes(`${routes.chats}/client`)
 														? "#1260D6"
 														: "#95989E"
 												}

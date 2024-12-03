@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import ChatHeader from "./_components/ChatHeader";
-import ChatInputBox from "./_components/ChatInputBox";
-import ChatMessage from "./_components/ChatMessage";
+import ChatHeader from "../_components/ChatHeader";
+import ChatInputBox from "../_components/ChatInputBox";
+import ChatMessage from "../_components/ChatMessage";
 import { PhoneMissed } from "lucide-react";
 
 export default function Page() {
