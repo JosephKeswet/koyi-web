@@ -33,9 +33,9 @@ export default function HireCard({
         <Image
           src={imageUrl}
           alt="Profile"
-          width={28}
+          width={100}
           height={100}
-          className="rounded-md"
+          className="rounded-md w-full h-full"
         />
       </div>
 

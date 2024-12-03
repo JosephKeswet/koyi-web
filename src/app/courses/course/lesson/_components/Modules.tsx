@@ -58,9 +58,9 @@ export default function Modules({}: Props) {
 	// Function to handle selecting/deselecting a lesson
 	const handleSelectLesson = (id: number) => {
 		if (isMobile) {
-			router.push(`${routes.courses}course/lesson/module/${id}`);
+			router.push(`${routes.courses}/course/lesson/module/${id}`);
 		} else {
-			router.push(`${routes.courses}course/lesson/${id}`);
+			router.push(`${routes.courses}/course/lesson/${id}`);
 		}
 
 		setSelectedLesson(id); // Set as selected module

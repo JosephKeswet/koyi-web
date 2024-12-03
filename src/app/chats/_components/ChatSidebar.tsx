@@ -1,22 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Search, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
+import { useStorage } from "@/frameworks/useStorage";
+import { usePathname } from "next/navigation";
 
 type Props = {
-	onSelectChat: (chatId: string) => void;
 };
 
-export default function ChatSidebar({ onSelectChat }: Props) {
-	const [activeTab, setActiveTab] = useState("myClients");
+export default function ChatSidebar({}: Props) {
+	const pathname = usePathname();
 
-	const tabs = [
-		{ id: "myClients", label: "My Clients" },
-		{ id: "professionals", label: "Professionals" },
-	];
+	const [activeChat, setActiveChat] = useState("myClients");
+	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const { getCookies, saveCookie } = useStorage(); // Destructure from the hook
 
-	const chatList: any = {
+	const chats = {
 		myClients: [
 			{
 				id: "kayode-eko",
@@ -59,40 +59,57 @@ export default function ChatSidebar({ onSelectChat }: Props) {
 		],
 	};
 
+	// Detect if the screen width is mobile
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 1024)
+		};
+
+		handleResize(); // Check on inital load
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
+	},[])
+
+	// Retrieve previously selected chat from cookies
+	useEffect(() => {
+		const savedChat = getCookies('activeChat');
+		if(savedChat) {
+			setActiveChat(savedChat); // Set previously selected chat
+
+		}
+	},[getCookies])
+
+	// Set active chat based on pathname
+	useEffect(() => {
+		let matchChat = null;
+
+    // Loop through each chat group and find a match
+    Object.keys(chats).forEach((key) => {
+      const foundChat = chats[key as keyof typeof chats].find((chat) =>
+        pathname.includes(`module/${chat.id}`)
+      );
+      if (foundChat) {
+        matchChat = foundChat;
+      }
+    });
+		if(matchChat) {
+			// setActiveChat(matchChat.id)
+		}
+	}, [pathname, chats]);
+
+	const handleSelectChat = (chatId: string) => {
+		setActiveChat(chatId);
+		saveCookie('activeChat', chatId);
+	}
+
 	return (
-		<div className=" w-full h-full ">
-			<div className="flex borderb text-sm font-semibold mb-4 p-4 lg:p-0">
-				{tabs.map((tab) => (
-					<button
-						key={tab.id}
-						onClick={() => setActiveTab(tab.id)}
-						className={`flex-1 p-4 ${
-							activeTab === tab.id
-								? "border-b-2 border-blue-500 text-blue-500"
-								: "border-b-2 border-transparent text-gray-500"
-						}`}
-					>
-						{tab.label}
-					</button>
-				))}
-			</div>
-
-			<div className="relative mb-4 p-4 lg:p-0">
-				<input
-					type="text"
-					placeholder="Search messages"
-					className="w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-md lg:rounded-none pl-10"
-				/>
-				<div className="absolute top-1/2 left-3 transform -translate-y-1/2 p-4 lg:p-0">
-					<Search className="text-gray-400 w-5 h-5" />
-				</div>
-			</div>
-
+		<div className="">
 			<div className="flex-1 overflow-y-auto border-t ">
-				{chatList[activeTab]?.map((chat: any) => (
+				{chats[activeChat as keyof typeof chats]?.map((chat: any) => (
 					<div
 						key={chat.id}
-						onClick={() => onSelectChat(chat.id)}
+						onClick={() => handleSelectChat(chat.id)}
 						className={`flex items-center gap-4 p-3 border-t ${
 							chat.status === "sent" ? "bg-white lg:bg-blue-100" : "bg-white"
 						} roundedlg cursor-pointer`}

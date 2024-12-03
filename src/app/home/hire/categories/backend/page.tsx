@@ -17,7 +17,8 @@ export default function BackendCategory() {
   ];
 
   const params = useParams();
-  const slug = params;
+  const slug = params?.slug;
+  console.log(slug);
 
   const hireCardsData = [
     {
@@ -32,7 +33,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter Developer",
-      route: `/home/hire/categories/backend/${slug}`,
+      slug: "swift-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -42,7 +43,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",
@@ -52,7 +53,7 @@ export default function BackendCategory() {
     },
     {
       title: "Swift & React Native Developer",
-      route: "/hire/categories/swift-react-native",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Swift", "React Native"],
       experience: "3 years",
@@ -62,7 +63,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter Developer",
-      route: "/hire/categories/flutter-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -72,7 +73,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",
@@ -82,7 +83,7 @@ export default function BackendCategory() {
     },
     {
       title: "Swift & React Native Developer",
-      route: "/hire/categories/swift-react-native-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Swift", "React Native"],
       experience: "3 years",
@@ -92,7 +93,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter Developer",
-      route: "/hire/categories/flutter-3",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -102,7 +103,7 @@ export default function BackendCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular-3",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",

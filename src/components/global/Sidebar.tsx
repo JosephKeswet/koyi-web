@@ -69,7 +69,7 @@ export default function Sidebar() {
 										icon={
 											<CourseIcon
 												color={
-													pathname.includes(routes.courses)
+													pathname.includes(`${routes.courses}/all`)
 														? "#1260D6"
 														: "#95989E"
 												}
@@ -81,13 +81,13 @@ export default function Sidebar() {
 								</SidebarComponent.Dropdown>
 								<SidebarComponent.Dropdown
 									hasItems={false}
-									route={routes.chats}
+									route={`${routes.chats}/client`}
 								>
 									<SidebarComponent.DropdownTrigger
 										icon={
 											<ChatIcon
 												color={
-													pathname.includes(routes.chats)
+													pathname.includes(`${routes.chats}/client`)
 														? "#1260D6"
 														: "#95989E"
 												}

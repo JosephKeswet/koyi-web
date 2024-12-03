@@ -22,8 +22,8 @@ export default function LearnCourseCard({ title, routeParam, duration, enrolled,
         <Image
           src=''
           alt=''
-          layout="fill"
-          objectFit="cover"
+          width={100}
+          height={100}
           className="object-cover w-full h-full"
         />
       </div>
