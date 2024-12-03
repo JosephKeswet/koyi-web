@@ -85,17 +85,17 @@ export default function ChatSidebar({}: Props) {
 		let matchChat = null;
 
     // Loop through each chat group and find a match
-    Object.keys(chats).forEach((key) => {
-      const foundChat = chats[key as keyof typeof chats].find((chat) =>
-        pathname.includes(`module/${chat.id}`)
-      );
-      if (foundChat) {
-        matchChat = foundChat;
-      }
-    });
-		if(matchChat) {
-			// setActiveChat(matchChat.id)
-		}
+    // Object.keys(chats).forEach((key) => {
+    //   const foundChat = chats[key as keyof typeof chats].find((chat) =>
+    //     pathname.includes(`module/${chat.id}`)
+    //   );
+    //   if (foundChat) {
+    //     matchChat = foundChat;
+    //   }
+    // });
+	// 	if(matchChat) {
+	// 		// setActiveChat(matchChat.id)
+	// 	}
 	}, [pathname, chats]);
 
 	const handleSelectChat = (chatId: string) => {
