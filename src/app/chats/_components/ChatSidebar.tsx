@@ -114,12 +114,12 @@ export default function ChatSidebar({}: Props) {
 								: "bg-white"
 						} roundedlg cursor-pointer`}
 					>
-						<Avatar className="w-10 h-10 rounded-full">
+						<Avatar className="w-10 h-10 rounded-full bg-gray-200">
 							<Image
 								src={chat.avatar}
 								alt={chat.name}
-								width={10}
-								height={10}
+								width={1000}
+								height={1000}
 							/>
 						</Avatar>
 						<div className="flex-1">

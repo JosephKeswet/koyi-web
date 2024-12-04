@@ -22,7 +22,7 @@ export default function Layout({ children }: Props) {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="sticky top-0 z-10 bg-white">
+      <div className="hidden lg:block sticky top-0 z-10 bg-white">
         <DashboardHeader>
           <DashboardHeader.MainHeader
             searchFunc={() => {}}
@@ -46,7 +46,7 @@ export default function Layout({ children }: Props) {
       </div>
       <div className="px-3 lg:px-[50px] flex flex-col gap-4 md:gap-[32px] pt-3 lg:pt-[50px] h-full">
         <div className="grid grid-cols-1 lg:grid-cols-3">
-          <main className="w-full col-span-2 border rounded-lg">
+          <main className="overflow-hidden w-full col-span-2 h-full">
             {children}
           </main>
         </div>

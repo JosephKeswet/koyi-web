@@ -59,7 +59,7 @@ export default function Layout({ children }: Props) {
 							<input
 								type="text"
 								placeholder="Search messages"
-								className="w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-md lg:rounded-none pl-10"
+								className="w-full px-4 py-2 bg-gray-100 rounded-md lg:rounded-none pl-10"
 							/>
 							<div className="absolute top-1/2 left-3 transform -translate-y-1/2 p-4 lg:p-0">
 								<Search className="text-gray-400 w-5 h-5" />

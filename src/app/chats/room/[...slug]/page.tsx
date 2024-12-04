@@ -10,7 +10,7 @@ export default function Page({}: Props) {
 	const params = useParams();
 
 	return (
-		<div className="p-8">
+		<div className="">
 			<div className="flex flex-col h-full">
 				{params.slug[1]}
 				<ChatRoom />
