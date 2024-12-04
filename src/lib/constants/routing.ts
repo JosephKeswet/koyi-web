@@ -2,6 +2,8 @@ export const routes = {
 	// Authentication routes
 	signup: "/signup",
 	verification_method: "/verification-method",
+	via_email: "/verify-email",
+	via_sms: "/verify-sms",
 	verify_otp: "/verify-otp",
 	signin: "/signin",
 	forgot_password: "/forgot-password",

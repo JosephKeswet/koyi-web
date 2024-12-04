@@ -12,27 +12,27 @@ export enum HomeLearnTabs {
 	Flutter = "Flutter",
 	ReactNative = " React Native",
 	Angular = "Angular",
-	Swift = "Swift"
-} 
+	Swift = "Swift",
+}
 
 export enum CourseTabs {
 	All = "All courses",
 	Ongoing = "Ongoing courses",
-	Completed = "Completed courses"
+	Completed = "Completed courses",
 }
 
 export enum SettingsSectionTab {
 	Profile = "Profile",
 	ProfessionalProfile = "Professional Profile",
 	General = "General",
-	Payment = "Payment"
+	Payment = "Payment",
 }
 
 export enum SettingsProfileTabs {
 	Bio = "Bio",
 	Portfolio = "My Portfolio",
 	Certificate = "My Certificate",
-	Reviews = "Reviews"
+	Reviews = "Reviews",
 }
 
 export enum SettingsPaymentTableHeader {
@@ -41,5 +41,15 @@ export enum SettingsPaymentTableHeader {
 	PaymentMethod = "Payment method",
 	AccountDetails = "Account Details",
 	Status = "Status",
-	DateInitiated = "Date initiated"
+	DateInitiated = "Date initiated",
+}
+
+export enum VerificationMethod {
+	Email = "email",
+	SMS = "phone",
+}
+
+export enum VerificationStep {
+	Verification = "verification",
+	SignUp = "signup",
 }

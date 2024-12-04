@@ -18,11 +18,18 @@ export default function Sidebar() {
 	const user = profile?.settings.data;
 	const business = profile?.business;
 	const showmerchantLayout =
-		pathname.includes(routes.home) ||
-		function handleLogout() {
-			Cookies.remove("token");
-			router.push(routes.signin);
-		};
+		pathname === routes.onboarding ||
+		pathname === routes.signup ||
+		pathname === routes.signin ||
+		pathname === routes.forgot_password ||
+		pathname === routes.reset_password ||
+		pathname === routes.verification_method ||
+		pathname === routes.via_email ||
+		pathname === routes.via_sms;
+	function handleLogout() {
+		Cookies.remove("token");
+		router.push(routes.signin);
+	}
 
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -32,7 +39,7 @@ export default function Sidebar() {
 	};
 	return (
 		<div className="">
-			{showmerchantLayout && (
+			{!showmerchantLayout && (
 				<div className="">
 					<SidebarComponent>
 						<div className="flex items-center h-[80px] px-[35px] mb-[60px]">

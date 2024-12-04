@@ -22,7 +22,10 @@ export default function Page({}: Props) {
 
 	return (
 		<div className="flex flex-col flex-1">
-			<ChatHeader />
+			<ChatHeader
+			// onBackToSidebar={() => {}}
+			// roomId=""
+			/>
 			<div className="flex flex-col flex-1 overflow-y-auto p-4">
 				{projectMessages.map((msg, idx) => (
 					<ChatMessage

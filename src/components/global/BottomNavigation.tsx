@@ -6,11 +6,25 @@ import { useEffect, useState } from "react";
 
 export default function BottomNavigation() {
 	const router = useRouter();
-	const pathName = usePathname();
+	const pathname = usePathname();
 
 	const isActive = (routePath: string) => {
-		return pathName.includes(routePath);
+		return pathname.includes(routePath);
 	};
+
+	const showmerchantLayout =
+		pathname === routes.onboarding ||
+		pathname === routes.signup ||
+		pathname === routes.signin ||
+		pathname === routes.forgot_password ||
+		pathname === routes.reset_password ||
+		pathname === routes.verification_method ||
+		pathname === routes.via_email ||
+		pathname === routes.via_sms;
+
+	if (showmerchantLayout) {
+		return;
+	}
 
 	return (
 		<div className="fixed bottom-0 left-0 right-0 z-50 flex h-16 w-full items-center justify-around border-t bg-white dark:border-gray-800 dark:bg-gray-950">
