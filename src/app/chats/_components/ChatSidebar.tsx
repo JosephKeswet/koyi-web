@@ -7,8 +7,7 @@ import { useStorage } from "@/frameworks/useStorage";
 import { usePathname, useRouter } from "next/navigation";
 import { routes } from "@/lib/constants";
 
-type Props = {
-};
+type Props = {};
 
 export default function ChatSidebar({}: Props) {
 	const pathname = usePathname();
@@ -20,67 +19,69 @@ export default function ChatSidebar({}: Props) {
 
 	const chats = [
 		{
-		  id: 1,
-		  name: "Kayode Eko",
-		  lastMessage: "Hi there! I'm interested in hiring you.",
-		  time: "Now",
-		  avatar: "",
-		  unreadCount: null,
-		  status: "sent",
+			id: 1,
+			name: "Kayode Eko",
+			lastMessage: "Hi there! I'm interested in hiring you.",
+			time: "Now",
+			avatar: "",
+			unreadCount: null,
+			status: "sent",
 		},
 		{
-		  id: 2,
-		  name: "Claire Faith",
-		  lastMessage: "Are you there?",
-		  time: "Now",
-		  avatar: "",
-		  unreadCount: 2,
-		  status: null,
+			id: 2,
+			name: "Claire Faith",
+			lastMessage: "Are you there?",
+			time: "Now",
+			avatar: "",
+			unreadCount: 2,
+			status: null,
 		},
 		{
-		  id: 3,
-		  name: "John Doe",
-		  lastMessage: "Can you help with the project?",
-		  time: "1 hr ago",
-		  avatar: "",
-		  unreadCount: null,
-		  status: "sent",
+			id: 3,
+			name: "John Doe",
+			lastMessage: "Can you help with the project?",
+			time: "1 hr ago",
+			avatar: "",
+			unreadCount: null,
+			status: "sent",
 		},
 		{
-		  id: 4,
-		  name: "Jane Smith",
-		  lastMessage: "I'll get back to you on this.",
-		  time: "2 hrs ago",
-		  avatar: "",
-		  unreadCount: null,
-		  status: null,
+			id: 4,
+			name: "Jane Smith",
+			lastMessage: "I'll get back to you on this.",
+			time: "2 hrs ago",
+			avatar: "",
+			unreadCount: null,
+			status: null,
 		},
-	  ];
+	];
 
 	// Detect if the screen width is mobile
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth < 1024)
+			setIsMobile(window.innerWidth < 1024);
 		};
 
 		handleResize(); // Check on inital load
-		window.addEventListener('resize', handleResize);
+		window.addEventListener("resize", handleResize);
 
-		return () => window.removeEventListener('resize', handleResize);
-	},[])
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	// Retrieve previously selected chat from cookies
 	useEffect(() => {
-		const savedChat = getCookies('activeChat');
-		if(savedChat) {
+		const savedChat = getCookies("activeChat");
+		if (savedChat) {
 			setActiveChat(Number(savedChat)); // Set previously selected chat
 		}
-	},[getCookies])
+	}, [getCookies]);
 
 	// Set active chat based on pathname
 	useEffect(() => {
-		const matchChat = chats.find((chat) => pathname.includes(`room/${chat.id}`));
-		if(matchChat) {
+		const matchChat = chats.find((chat) =>
+			pathname.includes(`room/${chat.id}`)
+		);
+		if (matchChat) {
 			setActiveChat(matchChat.id);
 		}
 	}, [pathname, chats]);
@@ -88,14 +89,17 @@ export default function ChatSidebar({}: Props) {
 	// Handle selecting a chat and navigation
 	const handleSelectChat = (chatId: number) => {
 		if (isMobile) {
-			router.push(`${routes.chats}/client/room/${chatId}`);
+			console.log("step 1");
+
+			router.push(`${routes.chats}/room/${chatId}`);
 		} else {
+			console.log("step 2");
 			router.push(`${routes.chats}/client/${chatId}`);
 		}
 
 		setActiveChat(chatId); // Set as selected module
 		saveCookie("activeChat", chatId.toString()); // Save the selected lesson in cookies
-	}
+	};
 
 	return (
 		<div className="">
@@ -105,8 +109,9 @@ export default function ChatSidebar({}: Props) {
 						key={chat.id}
 						onClick={() => handleSelectChat(chat.id)}
 						className={`flex items-center gap-4 p-3 border-t ${
-							pathname.includes(`room/${chat.id}`) ||
-							activeChat === chat.id ? "bg-blue-100" : "bg-white"
+							pathname.includes(`room/${chat.id}`) || activeChat === chat.id
+								? "bg-blue-100"
+								: "bg-white"
 						} roundedlg cursor-pointer`}
 					>
 						<Avatar className="w-10 h-10 rounded-full">

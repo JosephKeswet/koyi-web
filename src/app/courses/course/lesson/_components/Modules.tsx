@@ -68,7 +68,7 @@ export default function Modules({}: Props) {
 	};
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="w-full flex flex-col gap-2">
 			{lessons.map((lesson) => (
 				<div
 					key={lesson.id}
