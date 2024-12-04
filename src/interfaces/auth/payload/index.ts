@@ -1,3 +1,4 @@
+import { VerificationMethod } from "@/lib/constants/enums";
 import {
 	phoneRegex,
 	REGEXP_ONLY_DIGITS_AND_CHARS,
@@ -50,6 +51,7 @@ export interface ISignUp {
 	email: string;
 	phone: string;
 	password: string;
+	verificationType: VerificationMethod;
 }
 
 export interface IVerifyUser {

@@ -4,4 +4,13 @@ export const apiRoutes = {
 		verifyUser: "/auth/user/verify",
 		resendOtp: "/auth/user/resend_reg_otp",
 	},
+	courses: {
+		getAll: "/courses",
+		getById: "/courses/course",
+		search: "courses/search",
+		getModuleById: "/courses/module",
+		getLessonsByModule: "/courses/lessons",
+		getExercisesByModule: "/courses/exercises",
+		getUserGradesByCourseId: "/courses/grades",
+	},
 };

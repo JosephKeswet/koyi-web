@@ -90,6 +90,7 @@ export default function useAuth(mutationAdapter: MutationAdapter<any, any>) {
 
 	const signUpUser = async (args: ISignUp) => {
 		const response = await mutationAdapter.mutate(args);
+		handleSignUpSuccess(response, args.email);
 		// if (response === ResponseState.Success) {
 		// 	handleSignUpSuccess(response, args?.email);
 		// } else {

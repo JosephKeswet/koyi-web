@@ -24,7 +24,8 @@ export default function Sidebar() {
 		pathname === routes.forgot_password ||
 		pathname === routes.reset_password ||
 		pathname === routes.verification_method ||
-		pathname === routes.verify_otp;
+		pathname === routes.via_email ||
+		pathname === routes.via_sms;
 	function handleLogout() {
 		Cookies.remove("token");
 		router.push(routes.signin);

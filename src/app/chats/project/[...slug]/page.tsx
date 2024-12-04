@@ -23,8 +23,8 @@ export default function Page({}: Props) {
 	return (
 		<div className="flex flex-col flex-1">
 			<ChatHeader
-				onBackToSidebar={() => {}}
-				roomId=""
+			// onBackToSidebar={() => {}}
+			// roomId=""
 			/>
 			<div className="flex flex-col flex-1 overflow-y-auto p-4">
 				{projectMessages.map((msg, idx) => (
@@ -35,7 +35,7 @@ export default function Page({}: Props) {
 					/>
 				))}
 			</div>
-			<ChatInputBox onSendMessage={() => {}} />
+			<ChatInputBox />
 			{/* <BottomActionButtons /> */}
 		</div>
 	);

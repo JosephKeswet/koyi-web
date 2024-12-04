@@ -32,6 +32,7 @@ import { routes } from "@/lib/constants";
 import { useCustomMutation } from "@/frameworks/useCustomMutation";
 import { signUp } from "@/services/authService";
 import useAuth from "@/hooks/mutations/useAuth";
+import Loader from "@/components/global/Loader";
 
 export default function Page() {
 	const mutation = useCustomMutation(signUp);
@@ -72,11 +73,11 @@ export default function Page() {
 		// const payload = { ...values, verificationMethod: channel };
 		if (channel === VerificationMethod.Email) {
 			saveCookie("email", values.email);
-			router.push(routes.via_email);
+			signUpUser({ ...values, verificationType: VerificationMethod.Email });
 		} else {
 			saveCookie("phone", values.phone);
 
-			router.push(routes.via_sms);
+			signUpUser({ ...values, verificationType: VerificationMethod.SMS });
 		}
 		// console.log(payload);
 		// Send payload to the API
@@ -261,8 +262,9 @@ export default function Page() {
 								<Button
 									type="submit"
 									className="w-full h-[55px] text-white"
+									disabled={mutation.isPending}
 								>
-									Sign Up
+									{mutation.isPending ? <Loader /> : "Sign Up"}
 								</Button>
 							</form>
 						</Form>
