@@ -31,7 +31,7 @@ export default function Grades() {
   const percentage = "80.88%";
 
   return (
-    <div className="border rounded-lg flex flex-col">
+    <div className="lg:border rounded-lg flex flex-col">
       {/* Header */}
       <div className="flex px-4 py-4 items-center">
         <h1 className="text-2xl font-semibold ml-4">Grades</h1>
