@@ -5,14 +5,22 @@ import {
 	IGetLesson,
 	IGetModule,
 } from "@/interfaces/courses/payload";
-import { IGetGradesResponse } from "@/interfaces/courses/responses";
+import {
+	ICourseSearchResponse,
+	IExercisesResponse,
+	IGetAllCoursesResponse,
+	IGetCourseResponse,
+	IGetGradesResponse,
+	IGetLessonResponse,
+	IGetModuleResponse,
+} from "@/interfaces/courses/responses";
 import { apiRoutes, apiVersion } from "@/lib/constants/api";
 import axios from "axios";
 
 export default function useCourseService() {
 	const axiosAuth = useAxiosAuth();
 
-	const getAllCourses = async (): Promise<any> => {
+	const getAllCourses = async (): Promise<IGetAllCoursesResponse> => {
 		try {
 			const { data } = await axiosAuth.get(`${apiRoutes.courses.getAll}`);
 			return data;
@@ -28,7 +36,7 @@ export default function useCourseService() {
 		}
 	};
 
-	const getCourse = async (course_id: string): Promise<any> => {
+	const getCourse = async (course_id: string): Promise<IGetCourseResponse> => {
 		try {
 			const { data } = await axiosAuth.get(
 				`${apiRoutes.courses.getById}?course_id=${course_id}`
@@ -46,7 +54,9 @@ export default function useCourseService() {
 		}
 	};
 
-	const searchCourse = async (searchQuery: string): Promise<any> => {
+	const searchCourse = async (
+		searchQuery: string
+	): Promise<ICourseSearchResponse> => {
 		try {
 			const { data } = await axiosAuth.get(
 				`${apiRoutes.courses.search}?query=${searchQuery}`
@@ -67,7 +77,7 @@ export default function useCourseService() {
 	const getModule = async ({
 		module_id,
 		course_id,
-	}: IGetModule): Promise<any> => {
+	}: IGetModule): Promise<IGetModuleResponse> => {
 		try {
 			const { data } = await axiosAuth.get(
 				`${apiRoutes.courses.getModuleById}?module_id=${module_id}&course_id=${course_id}`
@@ -89,7 +99,7 @@ export default function useCourseService() {
 		module_id,
 		course_id,
 		lesson_id,
-	}: IGetLesson): Promise<any> => {
+	}: IGetLesson): Promise<IGetLessonResponse> => {
 		try {
 			const { data } = await axiosAuth.get(
 				`${apiRoutes.courses.getLessonsByModule}?module_id=${module_id}&course_id=${course_id}&lesson_id=${lesson_id}`
@@ -110,7 +120,7 @@ export default function useCourseService() {
 	const getExercises = async ({
 		module_id,
 		course_id,
-	}: IGetExercises): Promise<any> => {
+	}: IGetExercises): Promise<IExercisesResponse> => {
 		try {
 			const { data } = await axiosAuth.get(
 				`${apiRoutes.courses.getLessonsByModule}?module_id=${module_id}&course_id=${course_id}`
