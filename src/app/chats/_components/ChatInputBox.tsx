@@ -5,21 +5,12 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Button } from "@/components/ui/button";
 import CustomDialog from "./CustomDialog";
 
-type Props = {
-  onSendMessage: (message: string) => void;
-}
+type Props = {}
 
-export default function ChatInputBox({ onSendMessage }: Props) {
+export default function ChatInputBox({}: Props) {
   const [showButtons, setShowButtons] = useState(false);
   const [activeDialog, setActiveDialog] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
-
-  const handleSendClick = () => {
-    if(inputValue.trim() !== "") {
-      onSendMessage(inputValue);
-      setInputValue("");
-    }
-  };
 
   const actionButtons = [
     { label: "Scope of Work", id: "scopeOfWork", icon: <Plus className="w-4 h-4" /> },
@@ -58,7 +49,7 @@ export default function ChatInputBox({ onSendMessage }: Props) {
               <Mic className="w-5 h-5 text-gray-600" />
             </button>
             <button className="flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full">
-              <SendHorizontal onClick={handleSendClick} className="w-5 h-5" />
+              <SendHorizontal className="w-5 h-5" />
             </button>
           </>
         )}

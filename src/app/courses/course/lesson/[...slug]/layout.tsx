@@ -88,13 +88,13 @@ export default function Layout({ children }: Props) {
 
               <div
                 className={`
-									h-[40px] px-4 py-2 ${
+									h-[40px] px-4 py-2 cursor-pointer ${
                     pathname === `${routes.courses}/course/grades/1`
                       ? "bg-primary-light  border-r-4 border-primary"
                       : ""
                   }
 								`}
-                onClick={() => router.push(`${routes.courses}course/grades/1`)}
+                onClick={() => router.push(`${routes.courses}/course/grades/1`)}
               >
                 Grades
               </div>
