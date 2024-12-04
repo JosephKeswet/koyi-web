@@ -61,7 +61,7 @@ export default function Layout({ children }: Props) {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3">
-          <main className=" w-full col-span-2 border overflow-y-auto max-h-[calc(100vh-20vh)]">{children}</main>
+          <main className=" w-full col-span-2 lg:border overflow-y-auto max-h-[calc(100vh-20vh)]">{children}</main>
         </div>
       </div>
     </div>

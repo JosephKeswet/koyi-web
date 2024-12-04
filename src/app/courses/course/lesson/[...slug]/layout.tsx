@@ -100,7 +100,7 @@ export default function Layout({ children }: Props) {
               </div>
             </div>
           </div>
-          <main className="hidden lg:block w-full col-span-2 border overflow-y-auto max-h-[calc(100vh-25vh)]">
+          <main className="hidden lg:block w-full col-span-2 lg:border overflow-y-auto max-h-[calc(100vh-25vh)]">
             {children}
           </main>
         </div>

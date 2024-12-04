@@ -102,7 +102,7 @@ export default function Layout({ children }: Props) {
 							</div>
 						</div>
 					</div>
-					<main className=" w-full col-span-2">{children}</main>
+					<main className=" w-full col-span-2 max-h-[calc(100vh-35vh)]">{children}</main>
 				</div>
 			</div>
 		</div>

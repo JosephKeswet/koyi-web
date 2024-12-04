@@ -63,7 +63,7 @@ export default function Layout({ children }: Props) {
             </div>
             <ChatSidebar />
           </div>
-          <main className="hidden lg:block w-full col-span-2 border rounded-lg">
+          <main className="hidden lg:block w-full col-span-2 lg:border rounded-lg">
             {children}
           </main>
         </div>
