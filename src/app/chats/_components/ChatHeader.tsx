@@ -4,12 +4,9 @@ import { ChevronLeft, Phone } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 
-type Props = {
-  roomId: string;
-  onBackToSidebar: () => void; // New prop to handle the back navigation
-};
+type Props = {};
 
-export default function ChatHeader({ roomId, onBackToSidebar }: Props) {
+export default function ChatHeader({}: Props) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -31,7 +28,7 @@ export default function ChatHeader({ roomId, onBackToSidebar }: Props) {
     <div className="flex items-center justify-between p-4 border-b bg-white">
       <div className="flex items-center gap-4">
         {isMobile && (
-          <button onClick={onBackToSidebar} className="flex items-center justify-center w-[32px] h-[32px] bg-gray-200 rounded-full">
+          <button  className="flex items-center justify-center w-[32px] h-[32px] bg-gray-200 rounded-full">
             <ChevronLeft className="w-6 h-6 text-gray-600" />
           </button>
         )}

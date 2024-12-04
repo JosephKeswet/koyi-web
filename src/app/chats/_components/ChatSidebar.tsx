@@ -4,60 +4,58 @@ import { Search, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useStorage } from "@/frameworks/useStorage";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { routes } from "@/lib/constants";
 
 type Props = {
 };
 
 export default function ChatSidebar({}: Props) {
 	const pathname = usePathname();
-
-	const [activeChat, setActiveChat] = useState("myClients");
-	const [isMobile, setIsMobile] = useState<boolean>(false);
+	const router = useRouter();
 	const { getCookies, saveCookie } = useStorage(); // Destructure from the hook
 
-	const chats = {
-		myClients: [
-			{
-				id: "kayode-eko",
-				name: "Kayode-eko",
-				lastMessage: "Hi there! I'm interested in hiring you.",
-				time: "Now",
-				avatar: "",
-				unreadCount: null,
-				status: "sent",
-			},
-			{
-				id: "claire-faith",
-				name: "Claire Faith",
-				lastMessage: "Are you there?",
-				time: "Now",
-				avatar: "",
-				unreadCount: 2,
-				status: null,
-			},
-		],
-		professionals: [
-			{
-				id: "john-doe",
-				name: "John Doe",
-				lastMessage: "Can you help with the project?",
-				time: "1 hr ago",
-				avatar: "",
-				unreadCount: null,
-				status: "sent",
-			},
-			{
-				id: "jane-smith",
-				name: "Jane Smith",
-				lastMessage: "I'll get back to you on this.",
-				time: "2 hrs ago",
-				avatar: "",
-				unreadCount: null,
-				status: null,
-			},
-		],
-	};
+	const [activeChat, setActiveChat] = useState<number | null>(null);
+	const [isMobile, setIsMobile] = useState<boolean>(false);
+
+	const chats = [
+		{
+		  id: 1,
+		  name: "Kayode Eko",
+		  lastMessage: "Hi there! I'm interested in hiring you.",
+		  time: "Now",
+		  avatar: "",
+		  unreadCount: null,
+		  status: "sent",
+		},
+		{
+		  id: 2,
+		  name: "Claire Faith",
+		  lastMessage: "Are you there?",
+		  time: "Now",
+		  avatar: "",
+		  unreadCount: 2,
+		  status: null,
+		},
+		{
+		  id: 3,
+		  name: "John Doe",
+		  lastMessage: "Can you help with the project?",
+		  time: "1 hr ago",
+		  avatar: "",
+		  unreadCount: null,
+		  status: "sent",
+		},
+		{
+		  id: 4,
+		  name: "Jane Smith",
+		  lastMessage: "I'll get back to you on this.",
+		  time: "2 hrs ago",
+		  avatar: "",
+		  unreadCount: null,
+		  status: null,
+		},
+	  ];
 
 	// Detect if the screen width is mobile
 	useEffect(() => {
@@ -75,43 +73,40 @@ export default function ChatSidebar({}: Props) {
 	useEffect(() => {
 		const savedChat = getCookies('activeChat');
 		if(savedChat) {
-			setActiveChat(savedChat); // Set previously selected chat
-
+			setActiveChat(Number(savedChat)); // Set previously selected chat
 		}
 	},[getCookies])
 
 	// Set active chat based on pathname
 	useEffect(() => {
-		let matchChat = null;
-
-    // Loop through each chat group and find a match
-    // Object.keys(chats).forEach((key) => {
-    //   const foundChat = chats[key as keyof typeof chats].find((chat) =>
-    //     pathname.includes(`module/${chat.id}`)
-    //   );
-    //   if (foundChat) {
-    //     matchChat = foundChat;
-    //   }
-    // });
-	// 	if(matchChat) {
-	// 		// setActiveChat(matchChat.id)
-	// 	}
+		const matchChat = chats.find((chat) => pathname.includes(`room/${chat.id}`));
+		if(matchChat) {
+			setActiveChat(matchChat.id);
+		}
 	}, [pathname, chats]);
 
-	const handleSelectChat = (chatId: string) => {
-		setActiveChat(chatId);
-		saveCookie('activeChat', chatId);
+	// Handle selecting a chat and navigation
+	const handleSelectChat = (chatId: number) => {
+		if (isMobile) {
+			router.push(`${routes.chats}/client/room/${chatId}`);
+		} else {
+			router.push(`${routes.chats}/client/${chatId}`);
+		}
+
+		setActiveChat(chatId); // Set as selected module
+		saveCookie("activeChat", chatId.toString()); // Save the selected lesson in cookies
 	}
 
 	return (
 		<div className="">
 			<div className="flex-1 overflow-y-auto border-t ">
-				{chats[activeChat as keyof typeof chats]?.map((chat: any) => (
+				{chats.map((chat) => (
 					<div
 						key={chat.id}
 						onClick={() => handleSelectChat(chat.id)}
 						className={`flex items-center gap-4 p-3 border-t ${
-							chat.status === "sent" ? "bg-white lg:bg-blue-100" : "bg-white"
+							pathname.includes(`room/${chat.id}`) ||
+							activeChat === chat.id ? "bg-blue-100" : "bg-white"
 						} roundedlg cursor-pointer`}
 					>
 						<Avatar className="w-10 h-10 rounded-full">
