@@ -1,5 +1,9 @@
 "use client";
+
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
 	Form,
 	FormControl,
@@ -8,34 +12,38 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import React from "react";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import Loader from "@/components/global/Loader";
-import { useCustomMutation } from "@/frameworks/useCustomMutation";
-import Link from "next/link";
-import { routes } from "@/lib/constants";
 import { signUpSchema } from "@/interfaces/auth/payload";
 import {
 	BackIcon,
+	CheckMark,
 	EmailIcon,
 	PasswordIcon,
 	PhoneIcon,
 	ProfileIcon,
+	SMSIcon,
 	UserIcon,
 } from "@/lib/constants/icons";
-import { useRouter } from "next/navigation";
+import { useStorage } from "@/frameworks/useStorage";
+import { VerificationMethod, VerificationStep } from "@/lib/constants/enums";
+import { routes } from "@/lib/constants";
+import { useCustomMutation } from "@/frameworks/useCustomMutation";
+import { signUp } from "@/services/authService";
+import useAuth from "@/hooks/mutations/useAuth";
 
-type Props = {};
+export default function Page() {
+	const mutation = useCustomMutation(signUp);
 
-export default function Page({}: Props) {
+	const { signUpUser } = useAuth(mutation);
 	const router = useRouter();
-	// const mutation = useCustomMutation(signIn);
+	const { getCookies, saveCookie } = useStorage();
+	const [step, setStep] = useState<string>(() => getCookies("step"));
+	const [channel, setChannel] = useState<string>(
+		() => getCookies("verificationMethod") || "phone"
+	);
 
-	// const { signInUser } = useAuth(mutation);
-	// 1. Define your form.
 	const form = useForm<z.infer<typeof signUpSchema>>({
 		resolver: zodResolver(signUpSchema),
 		defaultValues: {
@@ -48,39 +56,116 @@ export default function Page({}: Props) {
 		},
 	});
 
-	// 2. Define a submit handler.
-	function onSubmit(values: z.infer<typeof signUpSchema>) {
-		console.log(values);
-		// signInUser(values);
+	// Handle verification channel selection and save to cookies
+	function handleVerificationSelection(selectedChannel: VerificationMethod) {
+		setChannel(selectedChannel);
+		saveCookie("verificationMethod", JSON.stringify(selectedChannel));
 	}
+
+	function handleStep(step: VerificationStep) {
+		setStep(step);
+		saveCookie("step", step);
+	}
+
+	// Form submission
+	function onSubmit(values: z.infer<typeof signUpSchema>) {
+		// const payload = { ...values, verificationMethod: channel };
+		if (channel === VerificationMethod.Email) {
+			saveCookie("email", values.email);
+			router.push(routes.via_email);
+		} else {
+			saveCookie("phone", values.phone);
+
+			router.push(routes.via_sms);
+		}
+		// console.log(payload);
+		// Send payload to the API
+	}
+
 	return (
-		<div>
-			<div className="flex items-center justify-center">
-				<div className="flex flex-col gap-6 h-auto w-auto lg:w-[528px] py-4 px-4">
-					<div className="flex items-center justify-left">
-						<BackIcon handlerFunc={() => router.back()} />
-					</div>
-					<h1 className="text-left md:text-center text-xl md:text-[48px] text-black font-semibold">
-						Sign Up
-					</h1>
-					<Form {...form}>
-						<form
-							onSubmit={form.handleSubmit(onSubmit)}
-							className="space-y-4"
+		<div className="flex items-center justify-center">
+			<div className="flex flex-col gap-6 h-auto w-auto lg:w-[528px] py-4 px-4">
+				<div className="flex items-center">
+					<BackIcon
+						handlerFunc={() => handleStep(VerificationStep.Verification)}
+					/>
+				</div>
+
+				{step === "verification" ? (
+					<div className="flex flex-col gap-2 md:gap-6">
+						<h1 className="text-left md:text-left text-xl md:text-[48px] text-black font-semibold">
+							Verification type
+						</h1>
+						<p className="text-[#95989E] text-sm text-left">
+							Please select your preferred option to receive your OTP.
+						</p>
+
+						{/* SMS Option */}
+						<div
+							onClick={() =>
+								handleVerificationSelection(VerificationMethod.SMS)
+							}
+							className={`flex items-center justify-between px-4 py-6 w-full h-[85px] rounded-[6px] ${
+								channel === VerificationMethod.SMS
+									? "border-[1.5px] border-primary"
+									: "border-[1.5px] border-slate-300"
+							}`}
 						>
-							<section className="w-full flex flex-col gap-4">
-								<div className="w-full">
+							<div className="flex items-center gap-3">
+								<SMSIcon />
+								<p className="text-[#95989E] text-sm text-left">Via SMS</p>
+							</div>
+							{channel === VerificationMethod.SMS && <CheckMark />}
+						</div>
+
+						{/* Email Option */}
+						<div
+							onClick={() =>
+								handleVerificationSelection(VerificationMethod.Email)
+							}
+							className={`flex items-center justify-between px-4 py-6 w-full h-[85px] rounded-[6px] ${
+								channel === "email"
+									? "border-[1.5px] border-primary"
+									: "border-[1.5px] border-slate-300"
+							}`}
+						>
+							<div className="flex items-center gap-3">
+								<EmailIcon />
+								<p className="text-[#95989E] text-sm text-left">Via email</p>
+							</div>
+							{channel === "email" && <CheckMark />}
+						</div>
+
+						{/* Proceed Button */}
+						<div className="flex items-center justify-center mt-6">
+							<Button
+								type="submit"
+								className="w-full"
+								onClick={() => handleStep(VerificationStep.SignUp)}
+							>
+								Proceed
+							</Button>
+						</div>
+					</div>
+				) : (
+					<>
+						<h1 className="text-left md:text-center text-xl md:text-[48px] text-black font-semibold">
+							Sign Up
+						</h1>
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(onSubmit)}
+								className="space-y-4"
+							>
+								<section className="w-full flex flex-col gap-4">
 									<FormField
 										control={form.control}
 										name="phone"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel className="text-primary-black">
-													Phone
-												</FormLabel>
+												<FormLabel>Phone</FormLabel>
 												<FormControl>
 													<Input
-														type="tel"
 														{...field}
 														icon={<PhoneIcon />}
 													/>
@@ -89,16 +174,12 @@ export default function Page({}: Props) {
 											</FormItem>
 										)}
 									/>
-								</div>
-								<div className="w-full">
 									<FormField
 										control={form.control}
 										name="username"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel className="text-primary-black">
-													Username
-												</FormLabel>
+												<FormLabel>Username</FormLabel>
 												<FormControl>
 													<Input
 														{...field}
@@ -109,57 +190,48 @@ export default function Page({}: Props) {
 											</FormItem>
 										)}
 									/>
-								</div>
-								<div className="grid grid-cols-2 gap-2">
-									<FormField
-										control={form.control}
-										name="first_name"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel className="text-primary-black">
-													First name
-												</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														icon={<ProfileIcon />}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="last_name"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel className="text-primary-black">
-													Last name
-												</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														icon={<ProfileIcon />}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
-								<div className="w-full">
+									<div className="grid grid-cols-2 gap-2">
+										<FormField
+											control={form.control}
+											name="first_name"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>First name</FormLabel>
+													<FormControl>
+														<Input
+															{...field}
+															icon={<ProfileIcon />}
+														/>
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="last_name"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Last name</FormLabel>
+													<FormControl>
+														<Input
+															{...field}
+															icon={<ProfileIcon />}
+														/>
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+									</div>
 									<FormField
 										control={form.control}
 										name="email"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel className="text-primary-black">
-													Email
-												</FormLabel>
+												<FormLabel>Email</FormLabel>
 												<FormControl>
 													<Input
-														type="email"
 														{...field}
 														icon={<EmailIcon />}
 													/>
@@ -168,16 +240,12 @@ export default function Page({}: Props) {
 											</FormItem>
 										)}
 									/>
-								</div>
-								<div className="w-full">
 									<FormField
 										control={form.control}
 										name="password"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel className="text-primary-black">
-													Password
-												</FormLabel>
+												<FormLabel>Password</FormLabel>
 												<FormControl>
 													<Input
 														type="password"
@@ -189,36 +257,17 @@ export default function Page({}: Props) {
 											</FormItem>
 										)}
 									/>
-								</div>
-							</section>
-							<div className="flex flex-col gap-4">
+								</section>
 								<Button
 									type="submit"
 									className="w-full h-[55px] text-white"
-									// disabled={isPending}
 								>
-									{/* {isPending ? (
-										<ReloadIcon className="animate-spin" />
-									) : (
-										"Sign Up"
-									)} */}
-									Signup
+									Sign Up
 								</Button>
-								<p className="text-black text-sm text-center">
-									Already have an account.{" "}
-									<Link href={routes.signin}>
-										<span className="text-black underline">Sign In</span>
-									</Link>
-								</p>
-								<p className="text-black text-sm text-center">
-									By signing up to create an account I accept Koyi&apos;s ,
-									<span className="text-[#3063E9]">Terms of Service</span> and
-									<span className="text-[#3063E9]"> Privacy Policy</span>.
-								</p>
-							</div>
-						</form>
-					</Form>
-				</div>
+							</form>
+						</Form>
+					</>
+				)}
 			</div>
 		</div>
 	);

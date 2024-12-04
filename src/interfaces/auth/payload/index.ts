@@ -1,4 +1,7 @@
-import { phoneRegex } from "@/lib/constants/regex";
+import {
+	phoneRegex,
+	REGEXP_ONLY_DIGITS_AND_CHARS,
+} from "@/lib/constants/regex";
 import { z } from "zod";
 
 export const signUpSchema = z.object({
@@ -32,6 +35,14 @@ export const signUpSchema = z.object({
 		}),
 });
 
+export const verifyUserSchema = z.object({
+	verification_type: z.enum(["email", "phone"]),
+	email_or_phone: z.string(),
+	otp: z.string().regex(REGEXP_ONLY_DIGITS_AND_CHARS, {
+		message: "OTP should only contain digits",
+	}),
+});
+
 export interface ISignUp {
 	username: string;
 	first_name: string;
@@ -39,4 +50,15 @@ export interface ISignUp {
 	email: string;
 	phone: string;
 	password: string;
+}
+
+export interface IVerifyUser {
+	verification_type: string;
+	email_or_phone: string;
+	otp: string;
+}
+
+export interface IResendOtp {
+	verification_type: string;
+	email_or_phone: string;
 }
