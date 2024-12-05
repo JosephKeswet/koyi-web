@@ -26,8 +26,8 @@ export default function ChatHeader({}: Props) {
 	}, []);
 
 	return (
-		<div className="flex items-center justify-between p-4 border-b bg-white">
-			<div className="flex items-center gap-4">
+		<div className="flex items-center justify-between border-b p-4 bg-white">
+			<div className="flex items-center gap-2 lg:gap-4">
 				{isMobile && (
 					<button className="flex items-center justify-center w-[32px] h-[32px] bg-gray-200 rounded-full">
 						<ChevronLeft
@@ -36,27 +36,27 @@ export default function ChatHeader({}: Props) {
 						/>
 					</button>
 				)}
-				<Avatar className="w-10 h-10 rounded-full">
+				<Avatar className="w-[45px] h-[45px] lg:w-[60px] lg:h-[60px] rounded-full bg-gray-200">
 					<Image
 						src=""
 						alt="Client 1"
-						width={10}
-						height={10}
+						width={1000}
+						height={1000}
 					/>
 				</Avatar>
 				<div>
 					<h2 className="text-lg font-bold">Oyale John</h2>
 					<div className="flex items-center gap-2 mt-1">
-						<span className="px-2 py-1 text-sm bg-gray-200 rounded-full">
+						<span className="px-2 py-1 text-sm bg-gray-100 rounded-full">
 							Swift
 						</span>
-						<span className="px-2 py-1 text-sm bg-gray-200 rounded-full">
+						<span className="px-2 py-1 text-sm bg-gray-100 rounded-full">
 							React Native
 						</span>
 					</div>
 				</div>
 			</div>
-			<button className="flex items-center justify-center w-[32px] h-[32px] bg-gray-200 rounded-full">
+			<button className="flex items-center justify-center w-[32px] h-[32px] rounded-full">
 				<Phone className="w-6 h-6 text-gray-600" />
 			</button>
 		</div>

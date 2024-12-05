@@ -103,23 +103,23 @@ export default function ChatSidebar({}: Props) {
 
 	return (
 		<div className="">
-			<div className="flex-1 overflow-y-auto border-t ">
+			<div className="flex-1 overflow-y-auto border-t pt-4">
 				{chats.map((chat) => (
 					<div
 						key={chat.id}
 						onClick={() => handleSelectChat(chat.id)}
-						className={`flex items-center gap-4 p-3 border-t ${
+						className={`flex items-center gap-3 p-4 py-5 lg:py-2 border-b ${
 							pathname.includes(`room/${chat.id}`) || activeChat === chat.id
 								? "bg-blue-100"
 								: "bg-white"
-						} roundedlg cursor-pointer`}
+						} cursor-pointer`}
 					>
-						<Avatar className="w-10 h-10 rounded-full">
+						<Avatar className="w-[50px] h-[50px] rounded-full bg-gray-200">
 							<Image
 								src={chat.avatar}
 								alt={chat.name}
-								width={10}
-								height={10}
+								width={1000}
+								height={1000}
 							/>
 						</Avatar>
 						<div className="flex-1">
