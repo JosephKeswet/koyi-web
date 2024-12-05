@@ -60,8 +60,8 @@ export default function Layout({ children }: Props) {
 						<ChevronLeft />
 					</Link>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-3  lg:grid-cols-2">
-					<div className="w-full lg:w-[280px]">
+				<div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-4 xl:gap-0">
+					<div className="w-full xl:w-[280px]">
 						<h1>Angular - The Complete Guide (2024 Edition)</h1>
 						<div className="flex flex-col gap-4">
 							<Accordion
@@ -104,7 +104,7 @@ export default function Layout({ children }: Props) {
 							</div>
 						</div>
 					</div>
-					<main className="hidden lg:block w-full  lg:border overflow-y-auto max-h-[calc(100vh-25vh)]">
+					<main className="col-span-2 hidden lg:block w-full  lg:border overflow-y-auto max-h-[calc(100vh-15vh)]">
 						{children}
 					</main>
 				</div>

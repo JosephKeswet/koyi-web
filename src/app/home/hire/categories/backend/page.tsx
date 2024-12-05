@@ -18,7 +18,6 @@ export default function BackendCategory() {
 
   const params = useParams();
   const slug = params?.slug;
-  console.log(slug);
 
   const hireCardsData = [
     {
@@ -137,7 +136,7 @@ export default function BackendCategory() {
       <div>
         <RoundedTabs basePath={routes.hire_categories} tabs={tabs} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:gridcols-3 gap-4">
       {hireCardsData.map((card, index) => (
         <HireCard 
             key={index} 

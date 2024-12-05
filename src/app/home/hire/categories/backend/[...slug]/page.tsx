@@ -39,7 +39,7 @@ export default function Page() {
   const cardData = hireCardsData[0];
 
   return (
-    <div className="flex flex-col gap-8 p-3 md:px-[50px] w-full">
+    <div className="flex flex-col gap-8 w-full">
 
       <div className="flex items-center gap-4 md:gap-[32px]">
         <Link

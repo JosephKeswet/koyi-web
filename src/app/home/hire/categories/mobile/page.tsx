@@ -15,10 +15,10 @@ export default function MobileCategory() {
     { routeKey: "ui-ux", name: "UI/UX" },
   ];
 
-   const hireCardsData = [
+  const hireCardsData = [
     {
       title: "Swift Developer",
-      route: "/hire/categories/swift",
+      slug: "swift-developer",
       imageUrl: "",
       technologies: ["Swift", "React Native"],
       experience: "3 years",
@@ -28,7 +28,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter Developer",
-      route: "/hire/categories/flutter",
+      slug: "swift-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -38,7 +38,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",
@@ -48,7 +48,7 @@ export default function MobileCategory() {
     },
     {
       title: "Swift & React Native Developer",
-      route: "/hire/categories/swift-react-native",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Swift", "React Native"],
       experience: "3 years",
@@ -58,7 +58,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter Developer",
-      route: "/hire/categories/flutter-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -68,7 +68,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",
@@ -78,7 +78,7 @@ export default function MobileCategory() {
     },
     {
       title: "Swift & React Native Developer",
-      route: "/hire/categories/swift-react-native-2",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Swift", "React Native"],
       experience: "3 years",
@@ -88,7 +88,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter Developer",
-      route: "/hire/categories/flutter-3",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter"],
       experience: "2+ years",
@@ -98,7 +98,7 @@ export default function MobileCategory() {
     },
     {
       title: "Flutter & Angular Developer",
-      route: "/hire/categories/flutter-angular-3",
+      slug: "flutter-developer",
       imageUrl: "",
       technologies: ["Flutter", "Angular"],
       experience: "3 years",
@@ -133,7 +133,11 @@ export default function MobileCategory() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
       {hireCardsData.map((card, index) => (
-        <HireCard key={index} {...card} />
+        <HireCard 
+          key={index} 
+          {...card}
+          route={`/home/hire/categories/mobile/${card.slug}`}
+         />
       ))}
     </div>
     </div>
