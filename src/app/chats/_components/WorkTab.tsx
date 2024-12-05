@@ -22,7 +22,7 @@ export default function WorkTab({
     defaultTab ||
     tabs[0].routeKey;
   return (
-    <div className="flex items-center w-full border-b pt-3">
+    <div className="flex items-center justify-center pt-5 px-4 lg:px-0">
       {tabs.map((tab) => {
         const isActive = activeTab.toLowerCase() === tab.routeKey.toLowerCase();
 
@@ -30,7 +30,7 @@ export default function WorkTab({
           <Link
             href={`${routes.chats}/${tab.routeKey.toLowerCase()}`}
             key={tab.routeKey}
-            className={`flex items-center justify-center px-4 py-2 cursor-pointer ${
+            className={`text-md flex items-center justify-center w-full px-6 lg:px-4 py-2 cursor-pointer ${
               isActive ? "border-b-2 border-primary" : ""
             }`}
           >
