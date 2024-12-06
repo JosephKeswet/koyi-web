@@ -9,6 +9,9 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import SearchComponent from "@/components/global/SearchComponent";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import LearnCourseCard from "../_components/LearnCourseCard";
+import CourseInfo from "./_components/CourseInfo";
 
 type Props = {
   children: React.ReactNode;
@@ -45,20 +48,10 @@ export default function Layout({ children }: Props) {
         </DashboardHeader.MainHeader>
       </DashboardHeader>
 
-      {/* Sticky Chevron and Navigation */}
-      <div className="px-3 lg:px-[50px] flex flex-col gap-4 md:gap-[32px] py-3 lg:py-[20px]">
-        <Link
-          href={routes.home}
-          className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
-        >
-          <ChevronLeft />
-        </Link>
+      <div className="flex-1 overflow-hidden w-full px-3 lg:px-[50px] ">
+        <div className="overflow-y-auto max-h-[calc(100vh-15vh)]">{children}</div>
       </div>
 
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-hidden w-full px-3 lg:px-[50px] ">
-        <div className="overflow-y-auto h-full">{children}</div>
-      </div>
     </div>
   );
 }
