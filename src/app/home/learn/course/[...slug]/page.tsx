@@ -19,6 +19,14 @@ type Props = {
 export default function page({ params }: Props) {
 	const { slug } = params;
 	const title = `${slug[0]}${slug[1] || ""}`; // Concatenate both for title if second part exists
+
+	const modules = [
+		{ id: 'item-1', title: 'Module 1 - Getting Started', description: 'Welcome to the Course', videoDuration: 'Video - 1:31' },
+		{ id: 'item-2', title: 'Module 2 - Introduction', description: 'Basic concepts covered', videoDuration: 'Video - 2:05' },
+		{ id: 'item-3', title: 'Module 3 - Advanced Topics', description: 'Deep dive into advanced topics', videoDuration: 'Video - 3:15' },
+		{ id: 'item-4', title: 'Module 4 - Conclusion', description: 'Wrap-up and final thoughts', videoDuration: 'Video - 1:45' },
+	  ];
+	
 	return (
 		<div className="">
 		<div className="col-span-2 relative flex flex-col gap-4 md:gap-[32px] py-3 lg:py-[20px]">
@@ -37,16 +45,16 @@ export default function page({ params }: Props) {
 			<ChevronLeft />
 		  </Link>
 		</div>
-		<div className="grid grid-cols-5 gap-4">
-		<section className='col-span-3'>
+		<div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+		<section className='lg:col-span-4'>
 				  <CourseInfo />
 			  </section>
   
 			  {/* Additional section */}
-			  <section className="col-span-2 border w-full h-[558px]">
+			  <section className="lg:col-span-3 border w-full h-[558px] px-6 py-8">
 				<div>
 					<p>Lessons</p>
-					<div>
+					<div className="flex gap-1 text-xs text-gray-400 text-wrap">
 						<p>38 modules</p>
 						<p>586 lectures</p>
 						<p>43h, 48 min total length</p>
@@ -54,25 +62,26 @@ export default function page({ params }: Props) {
 					<Accordion
 						type="single"
 						collapsible
-						value="item-1"
 					>
-						<AccordionItem value='item-1'>
-							<AccordionTrigger>
-								Module 1 -Getting started
-							</AccordionTrigger>
+						{modules.map(module => (
+						<AccordionItem key={module.id} value={`item-${module.id}`}>
+							<AccordionTrigger className='text-sm text-gray-400'>{module.title}</AccordionTrigger>
 							<AccordionContent>
 								<div>
-									<div>
+									<div className='flex items-center justify-between'>
+										<div className="flex gap-4">
 										<p>1</p>
-										<div>
-											<p>Welcome to the Course</p>
-											<p>Video - 1:31</p>
+										<div className='flex flex-col'>
+											<p className='text-lg'>{module.description}</p>
+											<p className="text-xs text-gray-400">{module.videoDuration}</p>
 										</div>
-										
+										</div>
+										<div></div>
 									</div>
 								</div>
 							</AccordionContent>
 						</AccordionItem>
+						))}
 					</Accordion>
 				</div>
 			  </section>
