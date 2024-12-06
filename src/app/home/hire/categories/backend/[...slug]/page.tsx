@@ -187,7 +187,7 @@ export default function Page() {
                 <img
                   src={review.avatar}
                   alt={review.author}
-                  className
+                  className=''
                 />
               </div>
               <h3 className="font-semibold">{review.author}</h3>
