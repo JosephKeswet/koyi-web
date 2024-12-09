@@ -9,24 +9,25 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 export default function useAuth(mutationAdapter: MutationAdapter<any, any>) {
+	const extractErrorType = (response: any) => {
+		// Check if the response contains a 'detail' array and that it is not empty
+		return response?.detail;
+		// if (
+		// 	response?.detail &&
+		// 	Array.isArray(response.detail) &&
+		// 	response.detail.length > 0
+		// ) {
+		// 	// Extract the 'type' from the first item in the 'detail' array
+		// 	return response.detail[0]?.type;
+		// }
+		// return null; // Return null if no type is found
+	};
+
 	const router = useRouter();
 	const { saveCookie, getCookies } = useStorage();
 	const { toast } = useToast();
 	const queryClient = useQueryClient();
 	const verification_type = getCookies("verificationMethod");
-
-	// const handleSignInSuccess = ({ token, message }: SignInResponse) => {
-	// 	queryClient.prefetchQuery({
-	// 		queryKey: [queryKeys],
-	// 	});
-	// 	toast(message, true);
-	// 	saveCookie("token", token);
-	// 	router.push(routes.transactions);
-	// };
-
-	// const handleSignInFailed = ({ message }: SignInResponse) => {
-	// 	toast(message!);
-	// };
 
 	const handleSignUpSuccess = ({ token, msg }: any, email: string) => {
 		Cookies.set("token", token);
@@ -37,78 +38,29 @@ export default function useAuth(mutationAdapter: MutationAdapter<any, any>) {
 		}
 	};
 
-	const handleSignUpFailed = ({ message }: any) => {
-		toast(message!, { type: ToastType.Failure });
+	const handleSignUpFailed = (errorResponse: any) => {
+		if (errorResponse?.detail && Array.isArray(errorResponse.detail)) {
+			// Extract the message from the detail array
+			const errorMessage = errorResponse.detail
+				.map((error: any) => error.msg) // Extract each error message
+				.join(", "); // Join them into one string if there are multiple errors
+
+			toast(errorMessage, { type: ToastType.Failure });
+		} else {
+			// Fallback if there is no detail array or message
+			toast("An unknown error occurred", { type: ToastType.Failure });
+		}
 	};
-
-	// const handleVerifySuccess = (
-	// 	{ orientation, message, token }: VerifyEmailResponse,
-	// 	closeDialog?: () => void
-	// ) => {
-	// 	saveCookie("token", token);
-	// 	if (closeDialog) {
-	// 		closeDialog();
-	// 		toast(message!, true);
-	// 		queryClient.invalidateQueries({
-	// 			queryKey: [queryKeys.settings.default],
-	// 		});
-	// 	}
-
-	// 	router.push(routes.settings);
-	// };
-
-	// const handleVerifyFailed = ({ message }: VerifyEmailResponse) => {
-	// 	toast(message!);
-	// };
-
-	// const signInUser = async (args: ISignIn) => {
-	// 	const response = await mutationAdapter.mutate(args);
-	// 	if (response.state === ResponseState.Success) {
-	// 		handleSignInSuccess(response);
-	// 	} else {
-	// 		handleSignInFailed(response);
-	// 	}
-	// };
-
-	// const handleResetSuccess = ({ message }: IResetPasswordResponse) => {
-	// 	toast(message!, true);
-	// 	router.push(routes.signin);
-	// };
-
-	// const handleResetFailed = ({ message }: IResetPasswordResponse) => {
-	// 	toast(message!, false);
-	// };
-
-	// const resetPasswordMutate = async (args: IResetPassword) => {
-	// 	const response = await mutationAdapter.mutate(args);
-	// 	if (response.state === ResponseState.Success) {
-	// 		handleResetSuccess(response);
-	// 	} else {
-	// 		handleResetFailed(response);
-	// 	}
-	// };
 
 	const signUpUser = async (args: ISignUp) => {
 		const response = await mutationAdapter.mutate(args);
-		handleSignUpSuccess(response, args.email);
-		// if (response === ResponseState.Success) {
-		// 	handleSignUpSuccess(response, args?.email);
-		// } else {
+		console.log("error", extractErrorType(response));
+		// if ("value_error" === extractErrorType(response)) {
 		// 	handleSignUpFailed(response);
+		// } else {
+		// 	handleSignUpSuccess(response, args?.email);
 		// }
 	};
-
-	// const verifyUserEmail = async (
-	// 	args: IVerifyEmail,
-	// 	closeDialog?: () => void
-	// ) => {
-	// 	const response: VerifyEmailResponse = await mutationAdapter.mutate(args);
-	// 	if (response.state === ResponseState.Success) {
-	// 		handleVerifySuccess(response, closeDialog);
-	// 	} else {
-	// 		handleVerifyFailed(response);
-	// 	}
-	// };
 
 	return { signUpUser };
 }

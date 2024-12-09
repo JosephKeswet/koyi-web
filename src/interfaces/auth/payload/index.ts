@@ -44,6 +44,11 @@ export const verifyUserSchema = z.object({
 	}),
 });
 
+export interface ISignIn {
+	username: string;
+	password: string;
+}
+
 export interface ISignUp {
 	username: string;
 	first_name: string;

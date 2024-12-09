@@ -3,6 +3,7 @@ export const apiRoutes = {
 		signUp: "/auth/user",
 		verifyUser: "/auth/user/verify",
 		resendOtp: "/auth/user/resend_reg_otp",
+		signin: "/auth/user/tokens",
 	},
 	courses: {
 		getAll: "/courses",
