@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { icons } from "@/lib/constants/icons";
 import { useParams, usePathname } from "next/navigation";
 import { SettingsSectionTab } from "@/lib/constants/enums";
-import SectionTab from "../account/_components/SectionTab";
+import SectionTab from "../_components/SectionTab";
 import FilterTableItem from "./_components/FilterTableItem";
 import { DataTable } from "./_components/tableInterface/DataTable";
 import { columns } from "./_components/tableInterface/Column";
@@ -93,36 +93,9 @@ export default function Page({}: Props) {
 
   return (
     <div className="bg-white h-screen flex flex-col overflow-hidden">
-      <DashboardHeader>
-        <DashboardHeader.MainHeader
-          searchFunc={() => {}}
-          downloadXLX={() => {}}
-          title="Settings"
-          createFunction={openRegistrationModal}
-        >
-          <DashboardHeader.HeaderText />
-          <DashboardHeader.HeaderContainer>
-            <DashboardHeader.HeaderSearch />
-            <div className="hidden lg:flex items-center gap-4">
-              <div className="ml-0 lg:ml-[40px]">
-                <ChatIcon color="#95989E" />
-              </div>
-              <DashboardHeader.HeaderAvatarProfile />
-            </div>
-          </DashboardHeader.HeaderContainer>
-        </DashboardHeader.MainHeader>
-      </DashboardHeader>
 
       <div className="p-3 md:px-[50px] w-full space-y-2">
         <div className="space-y-6">
-        <div className="text-nowrap shrink-0 pt-6">
-          <SectionTab 
-            field={sectionField} 
-            tabs={sectionTab} 
-            defaultTab={sectionTab[0].routeKey} 
-          />
-        </div>
-
         <div className="space-y-6">
           <h1 className="text-lg font-bold">{pageName}</h1>
 

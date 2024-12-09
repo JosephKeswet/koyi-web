@@ -28,7 +28,7 @@ export default function SectionTab({
 
         return (
           <Link
-            href={`${routes.settings_account}/${tab.routeKey.toLowerCase()}`}
+            href={`${routes.settings}/${tab.routeKey.toLowerCase()}`}
             key={tab.routeKey}
             className={`flex items-center justify-center px-4 py-2 cursor-pointer ${
               isActive ? "border-b-2 border-primary" : ""

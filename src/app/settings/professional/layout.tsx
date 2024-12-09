@@ -20,26 +20,19 @@ export default function Layout({ children }: Props) {
 
   const router = useRouter();
   const params = useParams();
-  const sectionField = params?.slug;
-  const tabField = params?.slug[1] ? params.slug[1] : "bio";
+  const field = params?.slug;
   const openRegistrationModal = () => {
     setIsModalOpen(true);
   };
-console.log(sectionField)
-  const sectionTab = [
+
+  const tab = [
     {routeKey: "profile", value: SettingsSectionTab.Profile},
-    {routeKey: "professional-profile", value: SettingsSectionTab.ProfessionalProfile},
+    {routeKey: "professional/edit", value: SettingsSectionTab.ProfessionalProfile},
     {routeKey: "general", value: SettingsSectionTab.General},
+    {routeKey: "payments", value: SettingsSectionTab.Payment}
 
 
   ]
- 
-  const tab = [
-    { routeKey: "bio", value: SettingsProfileTabs.Bio },
-    { routeKey: "portfolio", value: SettingsProfileTabs.Portfolio },
-    { routeKey: "certificate", value: SettingsProfileTabs.Certificate },
-    { routeKey: "reviews", value: SettingsProfileTabs.Reviews}
-  ];
 
   const { ChatIcon } = icons;
   return (
@@ -67,9 +60,9 @@ console.log(sectionField)
       <div className="p-3 md:px-[50px] w-full">
         <div className="max-w-5xl pt-6">
           <SectionTab 
-            field={sectionField} 
-            tabs={sectionTab} 
-            defaultTab={sectionTab[0].routeKey} 
+            field={field} 
+            tabs={tab} 
+            defaultTab={tab[1].routeKey} 
           />
         </div>
 

@@ -7,9 +7,9 @@ import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { SettingsProfileTabs, SettingsSectionTab } from "@/lib/constants/enums";
-import SectionTab from "../_components/SectionTab";
 import Image from "next/image";
 import Link from "next/link";
+import SectionTab from "../_components/SectionTab";
 type Props = {};
 
 export default function Page({}: Props) {
@@ -22,20 +22,22 @@ export default function Page({}: Props) {
   const openRegistrationModal = () => {
     setIsModalOpen(true);
   };
+
   const sectionTab = [
     {routeKey: "profile", value: SettingsSectionTab.Profile},
-    {routeKey: "professional-profile", value: SettingsSectionTab.ProfessionalProfile},
+    {routeKey: "professional", value: SettingsSectionTab.ProfessionalProfile},
     {routeKey: "general", value: SettingsSectionTab.General},
 
 
   ]
- 
+
   const tab = [
     { routeKey: "bio", value: SettingsProfileTabs.Bio },
     { routeKey: "portfolio", value: SettingsProfileTabs.Portfolio },
     { routeKey: "certificate", value: SettingsProfileTabs.Certificate },
     { routeKey: "reviews", value: SettingsProfileTabs.Reviews}
   ];
+ 
 
   const { ChatIcon } = icons;
   return (
