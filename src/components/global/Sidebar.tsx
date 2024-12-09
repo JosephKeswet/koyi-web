@@ -46,6 +46,10 @@ export default function Sidebar() {
 		router.push(`${routes.chats}/client`)
 	}
 
+	const setDefaultSettingsRoute = () => {
+		router.push(`${routes.settings}/profile`)
+	}
+
 	return (
 		<div className="">
 			{!showmerchantLayout && (
@@ -119,8 +123,7 @@ export default function Sidebar() {
 								</SidebarComponent.Dropdown>
 								</div>
 							</div>
-
-							<div className="pb-6">
+							<div onClick={setDefaultSettingsRoute} className="pb-6">
 								<SidebarComponent.Dropdown
 									hasItems={false}
 									route={routes.settings}
