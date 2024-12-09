@@ -66,7 +66,7 @@ export default function Layout({ children }: Props) {
           />
         </div>
 
-      <div>{children}</div>
+      <div className='pt-4'>{children}</div>
         </div>
     </div>
   );

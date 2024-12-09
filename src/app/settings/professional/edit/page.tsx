@@ -1,128 +1,179 @@
 "use client";
-
-import { useState } from "react";
-import { User, Phone, Mail, ChevronLeft } from "lucide-react";
+import DashboardHeader from "@/components/global/DashboardHeader";
+import React, { useState } from "react";
+import { icons } from "@/lib/constants/icons";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { SettingsProfileTabs, SettingsSectionTab } from "@/lib/constants/enums";
+import Image from "next/image";
 import Link from "next/link";
-import { routes } from "@/lib/constants";
-
+import SectionTab from "../../_components/SectionTab";
 type Props = {};
 
-export default function ProfilePage({}: Props) {
-  const [formData, setFormData] = useState({
-    firstName: "David",
-    lastName: "Okoro",
-    username: "@davidokoro143",
-    phone: "+2348166856468",
-    email: "hellodavidokoro@gmail.com",
-  });
+export default function Page({}: Props) {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const router = useRouter();
+  const params = useParams();
+  const sectionField = params?.slug;
+  const tabField = params?.slug ? params.slug : "bio";
+  const openRegistrationModal = () => {
+    setIsModalOpen(true);
   };
 
-  return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <div className="flex flex-col px-5 py-3 bg-white">
-      <Link
-        href={routes.settings}
-        className="flex items-center justify-center w-[32px] h-[32px] md:w-[42px] md:h-[42px] bg-primary-grey rounded-full"
-      >
-        <ChevronLeft />
-      </Link>
-      <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">My Profile</h1>
-        <button className="text-blue-600 font-medium">Save</button>
-        </div>
-      </div>
+  const sectionTab = [
+    {routeKey: "profile", value: SettingsSectionTab.Profile},
+    {routeKey: "professional", value: SettingsSectionTab.ProfessionalProfile},
+    {routeKey: "general", value: SettingsSectionTab.General},
 
-      <div className="flex flex-col items-center py-6">
+
+  ]
+
+  const tab = [
+    { routeKey: "bio", value: SettingsProfileTabs.Bio },
+    { routeKey: "portfolio", value: SettingsProfileTabs.Portfolio },
+    { routeKey: "certificate", value: SettingsProfileTabs.Certificate },
+    { routeKey: "reviews", value: SettingsProfileTabs.Reviews}
+  ];
+ 
+
+  const { ChatIcon } = icons;
+  return (
+    <div className='space-y-4'>
+      <div className='flex items-center justify-between'>
+        <p className='text-bold text-md'>Professional Profile</p>
+        <Link href='#' className="text-primary">
+          Edit
+        </Link>
+      </div>
+      <div className=" bg-black mt-4">
         <img
           src=""
-          alt="Profile"
-          className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
+          alt="Professional Cover"
+          className='object-contain h-60 w-full rounded-lg'
         />
-        <button className="mt-2 text-blue-600 font-medium">Edit</button>
       </div>
 
-      {/* Form Section */}
-      <div className="border border-gray-300 px-4 space-y-4">
-        <div>
-          <label className="text-sm font-medium text-gray-500">First name</label>
-          <div className="flex items-center border rounded-md px-3 py-2 mt-1">
-            <User className="text-gray-400 mr-3" />
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              className="flex-1 outline-none bg-transparent"
+      <div className="w-full">
+        <div className="bg-white pt-6">
+          <div className="flex items-center">
+            <div className="rounded-full bg-gray-50">
+            <img
+              src=""
+              alt="Profile Picture"
+              className='w-24 h-24 rounded-full'
             />
+            </div>
+            <div className="ml-6 flex-1">
+              <div className='flex items-center justify-between lg:justify-normal gap-4'>
+              <h1 className="text-xl font-semibold">Cyril John</h1>
+              <p className="text-sm text-gray-600">3 years</p>
+              </div>
+              <div className="flex gap-2 mt-2">
+                <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
+                  Swift
+                </span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">
+                  React Native
+                </span>
+              </div>
+            </div>
+            <div className="text-right hidden lg:block">
+              <p className="text-lg font-bold">From ₦100,000</p>
+              <Button variant="default" className="mt-2">
+                Edit Profile
+              </Button>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-500">Last name</label>
-          <div className="flex items-center border rounded-md px-3 py-2 mt-1">
-            <User className="text-gray-400 mr-3" />
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              className="flex-1 outline-none bg-transparent"
-            />
-          </div>
-        </div>
+      <div className="hidden lg:block pt-4 md:px-0 md:pt-6">
+        <SectionTab 
+          field={tabField} 
+          tabs={tab}
+          defaultTab={tab[0].routeKey}
+        />
+      </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-500">Username</label>
-          <div className="flex items-center border rounded-md px-3 py-2 mt-1">
-            <User className="text-gray-400 mr-3" />
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              className="flex-1 outline-none bg-transparent"
-            />
-          </div>
-        </div>
+      <div className="w-full py-6">
+        {/* {tabField === "bio" && ( */}
+          <div className="bg-white"> 
+            <h2 className="text-lg font-semibold mb-4">
+              Build your custom mobile application and upload to all mobile stores.
+            </h2>
+            <p className="text-sm text-gray-600">
+              I am a mobile developer who has built and depoloyed mobile applications for fintech, social media communication, fitness search engines, and a booking application for a bus service amongst others.
+            </p>
+            <div className="mt-6">
+              <h3 className="font-semibold">Frameworks:</h3>
+              <p className="text-sm text-gray-600">
+                - MERN, MEAN <br />
+                - Laravel, Symfony, Express <br />
+                - Firebase, Symphony, Express
+              </p>
+            </div>
 
-        <div>
-          <label className="text-sm font-medium text-gray-500">
-            Phone Number
-          </label>
-          <div className="flex items-center border rounded-md px-3 py-2 mt-1">
-            <Phone className="text-gray-400 mr-3" />
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="flex-1 outline-none bg-transparent"
-            />
+            <div className="mt-6">
+              <h3 className="font-semibold">Frameworks:</h3>
+              <p className="text-sm text-gray-600">
+                - Extensive Experience <br />
+                - Client Satisfaction <br />
+                - 24/7 Availability <br />
+                - Original Work <br />
+                - App Store Upload
+              </p>
+            </div>
           </div>
-        </div>
-
-        <div>
-          <label className="text-sm font-medium text-gray-500">
-            Email Address
-          </label>
-          <div className="flex items-center border rounded-md px-3 py-2 mt-1">
-            <Mail className="text-gray-400 mr-3" />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="flex-1 outline-none bg-transparent"
-            />
+         {/* )} */}
+{/* {tabField === "portfolio" && ( */}
+          <div className="bg-white">
+            <h3 className="text-lg font-semibold mb-4">My Portfolio</h3>
+            <div className="flex overflow-x-scroll space-x-4">
+              {[1, 2, 3, 4].map((_, i) => (
+                <div key={i} className=" flex relative">
+                  <img
+                    src=""
+                    alt="Portfolio"
+                    className="object-contain min-w-[390px] h-[250px] lg:min-w-[400px] lg:min-h-[200px] rounded-lg"
+                  />
+                  <div className='absolute bottom-4 right-3'>
+                  <p className="p-1 text-sm text-gray-600 rounded-full bg-gray-300 ">website.com</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <button className="w-full bg-blue-600 text-white py-3 rounded-md font-medium">
-          Save
-        </button>
+        {/* )} */}
+        {/* {tabField === "certificate" && ( */}
+        <div className="bg-white">
+            <h3 className="text-lg font-semibold mb-4">My Certificates</h3>
+            <div className="flex overflow-x-scroll space-x-4">
+              {[1, 2, 3, 4].map((_, i) => (
+                <div key={i} className=" flex relative">
+                  <img
+                    src=""
+                    alt="Certificates"
+                    className="object-contain min-w-[390px] h-[250px] lg:min-w-[400px] lg:min-h-[200px] rounded-lg"
+                  />
+                  <div className='absolute bottom-4 right-3'>
+                  <p className="p-1 text-sm text-gray-600 rounded-full bg-gray-300 ">website.com</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        {/* )} */}
+        {/* {tabField === "reviews" && ( */}
+          <div className="bg-white">
+            <h3 className="text-lg font-semibold mb-4">Reviews</h3>
+            <p className="text-sm text-gray-600">
+              No reviews available yet. Check back later!
+            </p>
+          </div>
+        {/* )} */}
       </div>
     </div>
   );
