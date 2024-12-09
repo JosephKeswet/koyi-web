@@ -37,6 +37,15 @@ export default function Sidebar() {
 	const openUpgradeWalletModal = () => {
 		setIsModalOpen(true);
 	};
+
+	const setDefaultCourseRoute = () => {
+		router.push(`${routes.courses}/all`)
+	}
+
+	const setDefaultChatsRoute = () => {
+		router.push(`${routes.chats}/client`)
+	}
+
 	return (
 		<div className="">
 			{!showmerchantLayout && (
@@ -68,15 +77,17 @@ export default function Sidebar() {
 										Home
 									</SidebarComponent.DropdownTrigger>
 								</SidebarComponent.Dropdown>
+								<div onClick={setDefaultCourseRoute}>
 								<SidebarComponent.Dropdown
 									hasItems={false}
-									route={`${routes.courses}/all`}
+									route={routes.courses}
+									
 								>
 									<SidebarComponent.DropdownTrigger
 										icon={
 											<CourseIcon
 												color={
-													pathname.includes(`${routes.courses}/all`)
+													pathname.includes(routes.courses)
 														? "#1260D6"
 														: "#95989E"
 												}
@@ -86,15 +97,17 @@ export default function Sidebar() {
 										My courses
 									</SidebarComponent.DropdownTrigger>
 								</SidebarComponent.Dropdown>
+								</div>
+								<div onClick={setDefaultChatsRoute}>
 								<SidebarComponent.Dropdown
 									hasItems={false}
-									route={`${routes.chats}/client`}
+									route={routes.chats}
 								>
 									<SidebarComponent.DropdownTrigger
 										icon={
 											<ChatIcon
 												color={
-													pathname.includes(`${routes.chats}/client`)
+													pathname.includes(routes.chats)
 														? "#1260D6"
 														: "#95989E"
 												}
@@ -104,6 +117,7 @@ export default function Sidebar() {
 										Chats
 									</SidebarComponent.DropdownTrigger>
 								</SidebarComponent.Dropdown>
+								</div>
 							</div>
 
 							<div className="pb-6">

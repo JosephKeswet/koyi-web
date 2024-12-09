@@ -15,6 +15,13 @@ export enum HomeLearnTabs {
 	Swift = "Swift",
 }
 
+export enum HomeHireAProffessionalAboutTab {
+	Bio = "Bio",
+	Portfolio = "Portfolio",
+	Certificate = "Certificate",
+	Reviews = "Reviews"
+}
+
 export enum CourseTabs {
 	All = "All courses",
 	Ongoing = "Ongoing courses",

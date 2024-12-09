@@ -21,7 +21,7 @@ export default function CustomDialog({
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 768);
+			setIsMobile(window.innerWidth <= 1024);
 		};
 		handleResize();
 		window.addEventListener("resize", handleResize);
@@ -48,10 +48,10 @@ export default function CustomDialog({
 				</button>
 			</DialogTrigger>
 			<DialogContent
-				className={`w-full lg:w-auto ${
+				className={`w-full lg:w-[60vw] ${
 					isMobile
-						? "fixed bottom-[50%] right-0 z-50 h-[80vh] overflow-y-auto rounded-t-lg bg-white p-6 shadow-lg  transform translate-y-full data-[state=open]:translate-y-0 transition-all duration-300 ease-in-out"
-						: "h-[80vh]"
+						? "fixed bottom-[50%] right-0 z-50 h-[70vh] overflow-y-auto rounded-t-lg bg-white p-6 shadow-lg  transform translate-y-full data-[state=open]:translate-y-0 transition-all duration-300 ease-in-out"
+						: "h-[70vh]"
 				}`}
 			>
 				<DialogHeader>
