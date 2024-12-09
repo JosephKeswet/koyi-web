@@ -20,7 +20,7 @@ export default function Page({}: Props) {
     <div>
         <div>
       <h1 className="text-lg font-semibold">General</h1>
-      <div className="w-full *:flex-1 flex gap-6">
+      <div className="w-full *:flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="w-full space-y-4">
           <p>Security</p>
           <div className="border rounded-lg p-2 space-y-4">

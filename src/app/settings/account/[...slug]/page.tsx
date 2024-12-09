@@ -89,7 +89,7 @@ export default function Page({}: Props) {
         </div>
       </div>
 
-      <div className="pt-4 md:px-0 md:pt-6">
+      <div className="hidden lg:block pt-4 md:px-0 md:pt-6">
         <SectionTab 
           field={tabField} 
           tabs={tab}
