@@ -3,7 +3,7 @@ import DashboardHeader from "@/components/global/DashboardHeader";
 import React, { useEffect, useState } from "react";
 import { icons } from "@/lib/constants/icons";
 import ChatSidebar from "../_components/ChatSidebar";
-import WorkTab from "../_components/WorkTab";
+import WorkTab from "../_components/ChatTab";
 import { Search, Check } from "lucide-react";
 import { useParams } from "next/navigation";
 
@@ -17,6 +17,7 @@ export default function Layout({ children }: Props) {
   const tab = [
     { routeKey: "client", value: " My client" },
     { routeKey: "professionals", value: "Professionals" },
+    { routeKey: "projects", value: "Projects"}
   ];
   const { ChatIcon } = icons;
 

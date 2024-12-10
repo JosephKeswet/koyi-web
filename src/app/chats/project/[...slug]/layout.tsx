@@ -5,10 +5,9 @@ import { icons } from "@/lib/constants/icons";
 import { Search, Check } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
-import ChatSidebar from "../_components/ChatSidebar";
+import ChatSidebar from "../../_components/ChatSidebar";
 import { useParams } from "next/navigation";
-import ChatTab from "../_components/ChatTab";
-import { routes } from "@/lib/constants";
+import ChatTab from "../../_components/ChatTab";
 
 type Props = {
 	children: React.ReactNode;
@@ -16,10 +15,10 @@ type Props = {
 
 export default function Layout({ children }: Props) {
 	const params = useParams();
-	const field = '1'
-
+	const field = params?.slug;
+	console.log(field)
 	const tab = [
-		{ routeKey: "clients", value: " My client" },
+		{ routeKey: "client", value: " My client" },
 		{ routeKey: "professionals", value: "Professionals" },
 		{ routeKey: "project", value: "Projects"}
 	];
@@ -50,9 +49,9 @@ export default function Layout({ children }: Props) {
 					</DashboardHeader.MainHeader>
 				</DashboardHeader>
 			</div>
-			<div className="lg:px-[50px] flex flex-col gap-4 md:gap-[32px] pt-3 lg:pt-[50px] h-full">
-				<div className="grid grid-cols-1 lg:grid-cols-3 bg-white h-full gap-4">
-					<div className="col-span-1 flex flex-col space-y-4">
+			<div className="lg:px-[50px] flex flex-col gap-4 md:gap-[32px] pt-3 lg:pt-[50px] h-full flex-grow">
+				<div className="grid grid-cols-1 lg:grid-cols-3 bg-white gap-4 h-full">
+					<div className="col-span-1 flex flex-col space-y-4 h-full">
 						<ChatTab
 							field={field}
 							tabs={tab}
@@ -70,7 +69,7 @@ export default function Layout({ children }: Props) {
 						</div>
 						<ChatSidebar />
 					</div>
-					<main className="hidden lg:block w-full col-span-2 lg:border rounded-lg">
+					<main className="hidden lg:block w-full col-span-2 lg:border rounded-lg h-full flex-grow">
 						{children}
 					</main>
 				</div>
